@@ -1,0 +1,68 @@
+.interests {
+  margin-top: 5vh;
+}
+.interests h4 {
+  text-align: center;
+  margin: 30px 30px;
+}
+.interests .interest-skill {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.interests select {
+  height: 30px;
+  margin-bottom: 2vh;
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid #676767;
+  width: 100%;
+  margin-bottom: 2vh;
+  font-size: 15px;
+  font-weight: 300;
+}
+.interests select:invalid {
+  color: var(--placeholder-colour);
+}
+.interests .select-interest {
+  margin-right: 5px;
+}
+.continue {
+  margin-top: 25px;
+  border-radius: 4px;
+  border: 0;
+  padding: 0.3rem 0.6rem;
+  box-shadow: var(--box-shadow);
+  letter-spacing: 0.2rem;
+  align-self: center;
+  border-radius: 4px;
+  width: 100%;
+  background-color: #f2ac16;
+  font-size: 16px;
+  font-weight: 300;
+  cursor: pointer;
+}
+.continue:active {
+  background-color: var(--hover-colour);
+}
+.add {
+  background-color: var(--main-colour);
+  border-radius: 50%;
+  height: 35px;
+  border: none;
+  font-size: 20px;
+  font-weight: 200;
+  margin: auto;
+  width: 35px;
+  margin-bottom: 10px;
+  cursor: pointer;
+}
+.remove {
+  background-color: transparent;
+  border: none;
+  font-size: 20px;
+  font-weight: 200;
+  margin-left: 3vw;
+  margin-bottom: 1vh;
+  cursor: pointer;
+}

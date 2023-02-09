@@ -1,0 +1,42 @@
+.profile-pic {
+  margin-top: 5vh;
+}
+.profile-pic .information {
+  text-align: center;
+  margin: 30px 30px;
+}
+.profile-pic .information h4 {
+  margin-bottom: 5vh;
+}
+.profile-pic .information img {
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
+  border: 2px solid black;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 10px;
+  border-radius: 10px;
+}
+.profile-pic .information input {
+  margin-bottom: 3vh;
+}
+.profile-pic .information .continue-button {
+  margin-top: 25px;
+  border-radius: 4px;
+  border: 0;
+  padding: 0.3rem 0.6rem;
+  box-shadow: var(--box-shadow);
+  letter-spacing: 0.2rem;
+  align-self: center;
+  border-radius: 4px;
+  width: 100%;
+  background-color: #f2ac16;
+  font-size: 16px;
+  font-weight: 300;
+  cursor: pointer;
+}
+.profile-pic .information .continue-button:active {
+  background-color: var(--hover-colour);
+}

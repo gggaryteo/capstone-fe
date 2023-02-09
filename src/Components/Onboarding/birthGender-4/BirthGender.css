@@ -1,0 +1,42 @@
+.birth-gender {
+  margin-top: 5vh;
+}
+.birth-gender h4 {
+  text-align: center;
+  margin: 30px 30px;
+}
+.birth-gender select, .birth-gender input {
+  height: 30px;
+  margin-bottom: 2vh;
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid #676767;
+  width: 100%;
+  margin-top: 4vh;
+  font-size: 15px;
+  margin-bottom: 5vh;
+  font-weight: 300;
+}
+.birth-gender select:invalid {
+  color: var(--placeholder-colour);
+}
+.birth-gender input {
+  margin-bottom: 0;
+}
+.continue-button {
+  border-radius: 4px;
+  border: 0;
+  padding: 0.3rem 0.6rem;
+  box-shadow: var(--box-shadow);
+  letter-spacing: 0.2rem;
+  align-self: center;
+  border-radius: 4px;
+  width: 100%;
+  background-color: #f2ac16;
+  font-size: 16px;
+  font-weight: 300;
+  cursor: pointer;
+}
+.continue-button:active {
+  background-color: var(--hover-colour);
+}

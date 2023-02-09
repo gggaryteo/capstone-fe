@@ -1,0 +1,57 @@
+.biography {
+  margin-top: 5vh;
+}
+
+.biography .information {
+  text-align: center;
+  margin: 30px 30px;
+}
+
+.biography .information h4 {
+  margin-bottom: 10vh;
+}
+
+.biography .information textarea {
+  min-height: 5vh;
+  max-height: 20vh;
+  line-height: 25px;
+  width: 100%;
+  padding-left: 6px;
+  padding-right: 6px;
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid #676767;
+}
+
+.biography .information textarea::placeholder {
+  font-family: "Nunito", sans-serif;
+  font-size: 15px;
+  font-weight: 300;
+}
+
+.biography .information p {
+  margin-bottom: 5vh;
+  text-align: end;
+  font-size: small;
+  font-weight: 200;
+}
+
+
+.finish-button-biography {
+  border-radius: 4px;
+  border: 0;
+  padding: 0.3rem 0.6rem;
+  box-shadow: var(--box-shadow);
+  letter-spacing: 0.2rem;
+  align-self: center;
+  border-radius: 4px;
+  width: 100%;
+  background-color: #f2ac16;
+  font-size: 16px;
+  font-weight: 300;
+  cursor: pointer;
+}
+
+.finish-button-biography:active {
+  background-color: var(--hover-colour);
+}

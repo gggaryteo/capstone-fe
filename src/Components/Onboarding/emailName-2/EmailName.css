@@ -1,0 +1,49 @@
+.email-name {
+  margin-top: 5vh;
+}
+
+.email-name h4 {
+  text-align: center;
+  margin: 30px 30px;
+}
+
+.email-name .continue-button {
+  margin-top: 25px;
+  border-radius: 4px;
+  border: 0;
+  padding: 0.3rem 0.6rem;
+  box-shadow: var(--box-shadow);
+  letter-spacing: 0.2rem;
+  align-self: center;
+  border-radius: 4px;
+  width: 100%;
+  background-color: #f2ac16;
+  font-size: 16px;
+  font-weight: 300;
+  cursor: pointer;
+}
+
+.email-name .information .username, .email-name .information .email {
+  height: 30px;
+  text-indent: 6px;
+  margin-bottom: 2vh;
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid #676767;
+  width: 100%;
+}
+
+.email-name .information .username::placeholder, .email-name .information .email::placeholder {
+  color: #828282;
+  font-weight: 300;
+  font-size: 15px;
+}
+
+.email-name .continue-button:active {
+  background-color: #cb8e0a;
+}
+
+.arrowback-icon {
+  float: left;
+  cursor: pointer;
+}
