@@ -7,14 +7,14 @@ import AuthModal from "../AuthModal/AuthModal";
 import Navbar from "../../Components/Navbar/Navbar";
 
 const Home = () => {
-  const [showModal, setShowModal] = useState(false);
   const [isSignUp, setIsSignUp] = useState(true);
+  const [openModal, setOpenModal] = useState(false);
 
   const authToken = false;
 
   const handleClick = () => {
     console.log("User clicked");
-    setShowModal(true);
+    setOpenModal(true);
     setIsSignUp(true);
   };
 
@@ -22,8 +22,8 @@ const Home = () => {
     <>
       <Navbar
         minimal={false}
-        setShowModal={setShowModal}
-        showModal={showModal}
+        setOpenModal={setOpenModal}
+        openModal={openModal}
         setIsSignUp={setIsSignUp}
       />
       <div className="home-page">
@@ -32,10 +32,11 @@ const Home = () => {
           {authToken ? "Signout" : "Create Account"}
         </button>
 
-        {showModal && (
+        {openModal && (
           <AuthModal
-            setShowModal={setShowModal}
             isSignUp={isSignUp}
+            openModal={openModal}
+            setOpenModal={setOpenModal}
           />
         )}
       </div>
