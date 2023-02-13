@@ -6,10 +6,11 @@ function Biography({ setCurrent, biography, setBiography, setIsPost }) {
   const [count, setCount] = useState(0);
   const [text, setText] = useState(biography["text"]);
 
-  const handleFinish = () => {
-    setBiography({
-      biography: text,
-    });
+  const handleFinish = (e) => {
+    console.log(text)
+    e.preventDefault();
+    setBiography({ biography: text, });
+    console.log(biography)
     setIsPost(true);
     // handle continue will be an axios.post
   };

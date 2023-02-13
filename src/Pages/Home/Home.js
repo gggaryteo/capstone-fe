@@ -5,18 +5,23 @@ import "./Home.css";
 import { useState } from "react";
 import AuthModal from "../AuthModal/AuthModal";
 import Navbar from "../../Components/Navbar/Navbar";
+import { useAuth } from "../../context/AuthContext";
+import userLogout from "../../services/userLogout";
 
 const Home = () => {
   const [isSignUp, setIsSignUp] = useState(true);
   const [openModal, setOpenModal] = useState(false);
-
-  const authToken = false;
+  const { setAuthState, isAuth } = useAuth();
 
   const handleClick = () => {
     console.log("User clicked");
     setOpenModal(true);
     setIsSignUp(true);
   };
+
+  const handleSignOut = () => {
+    setAuthState(userLogout)
+  }
 
   return (
     <>
@@ -25,12 +30,12 @@ const Home = () => {
         setOpenModal={setOpenModal}
         openModal={openModal}
         setIsSignUp={setIsSignUp}
+        isAuth={isAuth}
       />
       <div className="home-page">
         <h1 className="primary-title">Frienemies®</h1>
-        <button className="homepage-button" onClick={handleClick}>
-          {authToken ? "Signout" : "Create Account"}
-        </button>
+        {!isAuth ? <button className="homepage-button" onClick={handleClick}> Create Account </button> :
+        <button className="homepage-button" onClick={handleSignOut}> Sign Out</button>}
 
         {openModal && (
           <AuthModal

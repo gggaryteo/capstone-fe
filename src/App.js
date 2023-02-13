@@ -1,12 +1,12 @@
-import './App.css';
+import "./App.css";
 import { Outlet } from "react-router-dom";
 
 const App = () => {
   return (
     <div className="overlay">
-        <Outlet />
+      <Outlet />
     </div>
   );
-}
+};
 
 export default App;

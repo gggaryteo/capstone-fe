@@ -1,16 +1,25 @@
 import { useState } from "react";
-import axios from "axios";
+import { useAuth } from "../../context/AuthContext";
+import userLogin from "../../services/userLogin";
+import { useNavigate } from "react-router";
+
 
 // Styles
 import './LoginForm.css'
 
-const LoginForm = () => {
+const LoginForm = ( { onError }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
+  const { setAuthState } = useAuth();
+  const navigate = useNavigate();
+
   const login = (e) => {
     e.preventDefault();
-    console.log("Logged In")
+    userLogin({ email, password })
+      .then(setAuthState)
+      .then(() => navigate("/dashboard"))
+      .catch(onError);
   }
 
   return (
