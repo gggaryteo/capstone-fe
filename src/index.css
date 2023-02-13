@@ -73,7 +73,7 @@ textarea {
 }
 
 .error {
-  width: 500px;
+  width: 100%;
   color: red;
   background: pink;
   border: 1px solid red;
