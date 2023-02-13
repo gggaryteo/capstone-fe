@@ -11,6 +11,7 @@ const userLogout = () => {
       profilepic: null,
       token: "",
       username: "",
+      online: false
     },
   };
 }

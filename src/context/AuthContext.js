@@ -23,7 +23,7 @@ const authState = {
 };
 
 export default function AuthProvider({ children }) {
-  const [{ headers, isAuth, loggedUser }, setAuthState] = useState(
+  const [{ headers = {}, isAuth, loggedUser }, setAuthState] = useState(
     loggedIn || authState
   );
 
