@@ -5,10 +5,13 @@ import "./index.css";
 import App from "./App";
 
 // Import Pages
-import Dashboard from "./Pages/Dashboard/Dashboard";
 import Home from "./Pages/Home/Home";
 import ErrorNotFound from "./Pages/ErrorNotFound/ErrorNotFound";
 import AuthProvider, { useAuth } from "./context/AuthContext";
+import Main from "./Pages/Main/Main";
+import Chats from "./Pages/Chats/Chats";
+import Meetups from "./Pages/Meetups/Meetups";
+import Requests from "./Pages/Requests/Requests";
 
 const RootWrapper = () => {
   const { isAuth } = useAuth();
@@ -20,9 +23,14 @@ const RootWrapper = () => {
         <Route element={<App />}>
           <Route path="/" element={<Home />} />
           {isAuth ? (
-            <Route path="/dashboard" element={<Dashboard />} />
+            <>
+              <Route path="/main" element={<Main />} />
+              <Route path="/chats" element={<Chats />} />
+              <Route path="/meetups" element={<Meetups />} />
+              <Route path="/requests" element={<Requests />} />
+            </>
           ) : (
-            <Route path="/dashboard" element={<ErrorNotFound />} />
+            <Route path="/" element={<ErrorNotFound />} />
           )}
         </Route>
         <Route path="*" element={<ErrorNotFound />} />
