@@ -85,7 +85,7 @@ const RegisterForm = ( { onError }) => {
     if (isNotNull) {
       userSignUp({ ...allUserParams, online: true })
           .then(setAuthState)
-          .then(() => navigate("/"))
+          .then(() => navigate("/dashboard"))
           .catch(onError)
           
       setIsPost(false);
