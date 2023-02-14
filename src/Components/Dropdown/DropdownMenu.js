@@ -99,7 +99,9 @@ function DropdownMenu() {
         anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
       >
         <MenuItem>
-          <Avatar />
+          <Avatar>
+            {userInitial}
+          </Avatar>
           <Link to={`/profile/${username}`} style={{ textDecoration: "none" }}>
             Profile
           </Link>
