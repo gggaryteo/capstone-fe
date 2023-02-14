@@ -18,6 +18,7 @@ const ChatApp = () => {
   const logOut = (e) => {
     e.preventDefault();
     setUsernameAlreadySelected(false);
+    socket.disconnect();
   };
 
   useEffect(() => {
@@ -26,6 +27,7 @@ const ChatApp = () => {
     // });
     return () => {
       socket.off("connect_error"); //include cleanup - disconnect on unmount
+      socket.disconnect();
     };
   }, []);
 

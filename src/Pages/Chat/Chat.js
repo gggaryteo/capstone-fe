@@ -7,7 +7,6 @@ import UserPanel from "./UserPanel";
 export default function Chat(props) {
   const [selectedUser, setSelectedUser] = useState(null); // for userPanel
   const [users, setUsers] = useState([]);
-  //const [messages, setMessages] = useState(props.user.messages);
 
   useEffect(() => {
     //  const initReactiveProperties = (user) => {
@@ -64,11 +63,12 @@ export default function Chat(props) {
   //     });
   //   }
   // };
+  const onSelectUser = (user) => {
+    // console.log("what is e", e);
+    // e.preventDefault();
+    setSelectedUser(user);
+  };
 
-  // const onSelectUser = (user) => {
-  //   selectedUser = user
-  //   user.hasNewMessages = false
-  // }
   const pushMessage = (newMessage) => {
     setUsers((currentuser) => {
       let copyuser = [...currentuser];
@@ -102,22 +102,30 @@ export default function Chat(props) {
 
   return (
     <div>
-      Current logged in username: {props.username}
-      <br />
-      Current logged in userid: {props.userid}
-      <br />
-      <button onClick={props.logout}>Logout</button>
-      <br />
-      {JSON.stringify(users)}
-      <div className="right-panel">
-        {users.map((user, index) => (
-          <MessagePanel
-            index={index}
+      <div className="left-panel">
+        {users.map((user) => (
+          <UserPanel
             user={user}
+            selecteduserid={selectedUser}
+            onSelect={() => onSelectUser(user)} // i just put onSelectUser aand it did not work, so this works now.
+          />
+        ))}
+      </div>
+      <div className="right-panel">
+        Current logged in username: {props.username}
+        <br />
+        Current logged in userid: {props.userid}
+        <br />
+        <button onClick={props.logout}>Logout</button>
+        <br />
+        {/* {JSON.stringify(users)} */}
+        {selectedUser && (
+          <MessagePanel
+            user={selectedUser}
             currentuserid={props.userid}
             pushMessage={pushMessage}
           />
-        ))}
+        )}
       </div>
     </div>
   );

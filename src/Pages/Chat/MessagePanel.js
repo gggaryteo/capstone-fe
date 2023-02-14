@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import socket from "../../socket";
 import StatusIcon from "./StatusIcon";
 import "./MessagePanel.css";
@@ -43,18 +43,19 @@ export default function MessagePanel(props) {
       </div>
 
       <ul className="messages">
-        {props.user.messages.map((message, index) => {
-          return (
-            <li key={index} className="message">
-              <div className="sender">
-                {message.from_id == props.currentuserid
-                  ? "(yourself)"
-                  : props.user.username}
-              </div>
-              {message.content}
-            </li>
-          );
-        })}
+        {props.user.messages &&
+          props.user.messages.map((message, index) => {
+            return (
+              <li key={index} className="message">
+                <div className="sender">
+                  {message.from_id == props.currentuserid
+                    ? "(yourself)"
+                    : props.user.username}
+                </div>
+                {message.content}
+              </li>
+            );
+          })}
       </ul>
 
       <form onSubmit={onSend}>
