@@ -18,7 +18,7 @@ const LoginForm = ( { onError }) => {
     e.preventDefault();
     userLogin({ email, password })
       .then(setAuthState)
-      .then(() => navigate("/dashboard"))
+      .then(() => navigate("/main"))
       .catch(onError);
   }
 

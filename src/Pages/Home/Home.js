@@ -30,7 +30,6 @@ const Home = () => {
         setOpenModal={setOpenModal}
         openModal={openModal}
         setIsSignUp={setIsSignUp}
-        isAuth={isAuth}
       />
       <div className="home-page">
         <h1 className="primary-title">Frienemies®</h1>

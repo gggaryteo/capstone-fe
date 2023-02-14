@@ -8,8 +8,8 @@ import userLogout from "../../services/userLogout";
  import { useAuth } from "../../context/AuthContext";
 
 
-const Navbar = ({ minimal, openModal, setOpenModal, setIsSignUp, isAuth }) => {
-  const { setAuthState } = useAuth();
+const Navbar = ({ minimal, openModal, setOpenModal, setIsSignUp }) => {
+  const { isAuth, setAuthState } = useAuth();
 
   const handleClick = () => {
     setOpenModal(true);
