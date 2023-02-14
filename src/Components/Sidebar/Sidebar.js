@@ -7,6 +7,7 @@ import {
   FaColumns,
   FaPeopleArrows,
   FaUserFriends,
+  FaIdBadge,
 } from "react-icons/fa";
 import DropdownMenu from "../Dropdown/DropdownMenu";
 
@@ -19,9 +20,7 @@ const Sidebar = () => {
     <div className="sidebar">
       <div className="sidebar-content">
         <div className="user">
-          <DropdownMenu src={loggedUser.profilepic}>
-            {userInitial}
-          </DropdownMenu>
+          <DropdownMenu src={loggedUser.profilepic}>{userInitial}</DropdownMenu>
           <p> Hello {loggedUser.username}! </p>
         </div>
         <nav className="links">
@@ -56,6 +55,16 @@ const Sidebar = () => {
                   alt="request-icon"
                 />
                 <span>Requests</span>
+              </NavLink>
+            </li>
+            <li>
+              <NavLink to={`/profile/${username}`}>
+                <FaIdBadge
+                  fill="true"
+                  className="icons"
+                  alt="request-icon"
+                />
+                <span>Profile</span>
               </NavLink>
             </li>
           </ul>
