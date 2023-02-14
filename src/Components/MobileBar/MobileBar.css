@@ -1,78 +1,59 @@
+.mobile-container {
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	width: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
 .mobile-navbar {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  background-color: #eab1f7;
-  padding: 10px;
-  width: 100%;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+	display: flex;
+	flex-grow: 1;
+	height: 72px;
+	width: 100%;
+	border-radius: 10px 10px 0 0;
+	overflow: hidden;
+	background-color: #eab1f7;
+	box-shadow: 0 0 1px 0 rgba(#342ead, 0.25), 0 15px 30px 0 rgba(#342ead, 0.1);
   position: fixed;
   bottom: 0;
   left: 0;
-}
-
-.center {
-  display: flex;
+  right: 0;
   justify-content: center;
   align-items: center;
 }
 
-.mobile-navbar .container {
+.menu-item {
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
+  justify-content: center;
   align-items: center;
-  width: 80%;
-}
-
-.mobile-navbar .user {
-  display: flex;
-  align-items: center;
-  margin-left: 10px;
-}
-
-.mobile-navbar .user p {
-  margin-left: 10px;
-  font-size: 16px;
-  color: #333;
-}
-
-.mobile-navbar .links {
-  display: flex;
-  align-items: center;
-  margin-right: 10px;
-}
-
-.mobile-navbar .links ul {
-  display: flex;
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-
-.mobile-navbar .links ul li {
-  display: flex;
-  align-items: center;
-  margin-right: 20px;
-}
-
-.mobile-navbar .links ul li a {
-  display: flex;
-  align-items: center;
-  color: #333;
+  flex-grow: 1;
   text-decoration: none;
 }
 
-.mobile-navbar .links ul li a span {
-  margin-left: 5px;
-  font-size: 16px;
+.icons {
+	display: block;
+	margin-bottom: 4px;
+	font-size: 26px;
+	color: rgba(52, 46, 173, 0.7);
+	transition: 0.25s ease;
 }
 
-.mobile-navbar .links a.active {
-  text-decoration: underline;
+.menu-item-label {
+	display: block;
+	font-size: 12px;
+	color: rgba(52, 46, 173, 0.7);
+	transition: 0.25s ease;
 }
 
-.mobile-navbar .icons {
-  font-size: 15px;
-  color: #333;
+.menu-item:hover .icons,
+.menu-item:hover .menu-item-label,
+.menu-item.active .icons,
+.menu-item.active .menu-item-label {
+  color: #342ead;
 }

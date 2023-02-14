@@ -1,10 +1,10 @@
 .Requests {
-  background-color: white;
+  background-color: var(--bg-color);
   height: 100vh;
   display: flex;
 }
 
 .Requests .container {
   flex-grow: 1;
-  padding: 0 60px;
+  padding: 0 30px;
 }

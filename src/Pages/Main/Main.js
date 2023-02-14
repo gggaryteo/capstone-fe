@@ -4,7 +4,7 @@ import "./Main.css";
 import { useAuth } from "../../context/AuthContext";
 import MobileBar from "../../Components/MobileBar/MobileBar";
 import useWindowSize from "../../hooks/useWindowSize";
-import DropdownMenu from "../../Components/Dropdown/DropdownMenu";
+import AuthNavbar from "../../Components/AuthNavbar/AuthNavbar";
 
 const Main = () => {
   const { loggedUser } = useAuth();
@@ -14,6 +14,7 @@ const Main = () => {
     <div className="Main">
       {loggedUser && (windowSize.width > 768 ? <Sidebar /> : <MobileBar />)}
       <div className="container">
+        <AuthNavbar />
         <Dashboard />
       </div>
     </div>

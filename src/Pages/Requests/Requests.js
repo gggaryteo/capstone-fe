@@ -3,6 +3,7 @@ import "./Requests.css";
 import { useAuth } from "../../context/AuthContext";
 import MobileBar from "../../Components/MobileBar/MobileBar";
 import useWindowSize from "../../hooks/useWindowSize";
+import AuthNavbar from "../../Components/AuthNavbar/AuthNavbar";
 
 const Requests = () => {
   const { loggedUser } = useAuth();
@@ -11,7 +12,10 @@ const Requests = () => {
   return (
     <div className="Requests">
       {loggedUser && (windowSize.width > 768 ? <Sidebar /> : <MobileBar />)}
-      <div className="container">Requests</div>
+      <div className="container">
+        <AuthNavbar/>
+        Requests
+      </div>
     </div>
   );
 };
