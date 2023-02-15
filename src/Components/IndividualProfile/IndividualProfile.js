@@ -8,7 +8,6 @@ import {
 } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
 import getProfile from "../../services/getProfile";
-import Avatar from "@mui/material/Avatar";
 import {
   FaCog,
   FaInstagram,
@@ -21,13 +20,13 @@ import "./IndividualProfile.css";
 const IndividualProfile = () => {
   const { state } = useLocation();
   const [activeTab, setActiveTab] = useState("#about");
-  const [{ biography, profilepic }, setAuthor] = useState(state || {});
+  const [{ biography, profilepic, location, firstname, email, online }, setAuthor] = useState(state || {});
   const { isAuth, headers, loggedUser } = useAuth();
   const { username } = useParams();
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (state && state.bio === biography) return;
+    if (state && state.biography === biography) return;
 
     getProfile({ headers, username })
       .then(setAuthor)
@@ -46,8 +45,8 @@ const IndividualProfile = () => {
     <div className="card" data-state="#about">
       <div className="card-header">
         <div className="card-cover"></div>
-        <img className="card-avatar" src={loggedUser.profilepic} alt="avatar" />
-        <h1 className="card-fullname">{loggedUser.firstname}</h1>
+        <img className="card-avatar" src={profilepic} alt="avatar" />
+        <h1 className="card-fullname">{firstname}</h1>
       </div>
       <div className="card-main">
         <div
@@ -58,7 +57,7 @@ const IndividualProfile = () => {
         >
           <div className="card-content">
             <div className="card-subtitle">ABOUT</div>
-            <p className="card-desc">{loggedUser.biography}</p>
+            <p className="card-desc">{biography}</p>
           </div>
           <div className="card-social">
             <a href="true">
@@ -108,7 +107,7 @@ const IndividualProfile = () => {
                   <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z" />
                   <circle cx="12" cy="10" r="3" />
                 </svg>
-                {loggedUser.location}
+                {location} Singapore
               </div>
               <div className="card-contact">
                 <svg
@@ -123,7 +122,7 @@ const IndividualProfile = () => {
                   <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
                   <path d="M22 6l-10 7L2 6" />
                 </svg>
-                {loggedUser.email}
+                {email}
               </div>
 
               <button className="contact-me">Send A Request</button>

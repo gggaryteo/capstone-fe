@@ -9,7 +9,7 @@ import userLogout from "../../services/userLogout";
 
 
 const Navbar = ({ minimal, openModal, setOpenModal, setIsSignUp }) => {
-  const { isAuth, setAuthState } = useAuth();
+  const { isAuth, setAuthState, loggedUser } = useAuth();
 
   const handleClick = () => {
     setOpenModal(true);
@@ -17,7 +17,7 @@ const Navbar = ({ minimal, openModal, setOpenModal, setIsSignUp }) => {
   };
 
   const handleSignOut = () => {
-    setAuthState(userLogout);
+    setAuthState(userLogout(loggedUser.email));
   }
 
   return (

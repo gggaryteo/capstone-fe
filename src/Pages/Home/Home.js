@@ -11,7 +11,7 @@ import userLogout from "../../services/userLogout";
 const Home = () => {
   const [isSignUp, setIsSignUp] = useState(true);
   const [openModal, setOpenModal] = useState(false);
-  const { setAuthState, isAuth } = useAuth();
+  const { setAuthState, isAuth, loggedUser } = useAuth();
 
   const handleClick = () => {
     console.log("User clicked");
@@ -20,7 +20,7 @@ const Home = () => {
   };
 
   const handleSignOut = () => {
-    setAuthState(userLogout)
+    setAuthState(userLogout(loggedUser.email))
   }
 
   return (
