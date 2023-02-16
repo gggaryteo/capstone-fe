@@ -1,0 +1,10 @@
+.EditProfile {
+  background-color: var(--bg-color);
+  height: 100vh;
+  display: flex;
+}
+
+.EditProfile .container {
+  flex-grow: 1;
+  padding: 0 30px;
+}

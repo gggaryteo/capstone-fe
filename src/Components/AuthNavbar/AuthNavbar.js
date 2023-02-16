@@ -20,7 +20,7 @@ export default function AuthNavbar() {
 
     // Log the user out
     try {
-      await setAuthState(userLogout);
+      await setAuthState(userLogout(loggedUser.email));
       navigate('/');
       setIsLoading(false);
 

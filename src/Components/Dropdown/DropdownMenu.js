@@ -32,7 +32,7 @@ function DropdownMenu() {
   };
 
   const handleLogout = () => {
-    setAuthState(userLogout)
+    setAuthState(userLogout(loggedUser.email))
   };
 
   const userInitial = username.charAt(0).toUpperCase();
@@ -50,7 +50,7 @@ function DropdownMenu() {
           style={{ marginRight: "70px" }}
         >
           <Avatar
-            sx={{ width: 45, height: 42 }}
+            sx={{ width: 80, height: 76 }}
             src={profilepic}
             style={{
               borderRadius: "50%",

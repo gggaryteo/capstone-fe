@@ -38,7 +38,7 @@ const MobileBar = () => {
           <span className="menu-item-label">Requests</span>
         </NavLink>
 
-        <NavLink className="menu-item" to="/profile">
+        <NavLink className="menu-item" to={`/profile/${username}`}>
           <FaIdBadge className="icons" alt="request-icon" />
           <span className="menu-item-label">Profile</span>
         </NavLink>
