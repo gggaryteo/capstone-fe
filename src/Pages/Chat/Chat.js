@@ -48,21 +48,6 @@ export default function Chat(props) {
     };
   }, []);
 
-  // do this one later, for selected user on left user panel
-  // const onMessage = (content) => {
-  //   if (selectedUser) {
-  //     console.log(selectedUser);
-  //     socket.emit("private message", {
-  //       content,
-  //       to: selectedUser.userID,
-  //       chatroomId: selectedUser.chatid,
-  //     });
-  //     selectedUser.messages.push({
-  //       content,
-  //       fromSelf: true,
-  //     });
-  //   }
-  // };
   const onSelectUser = (user) => {
     // console.log("what is e", e);
     // e.preventDefault();
@@ -107,7 +92,7 @@ export default function Chat(props) {
           <UserPanel
             user={user}
             selecteduserid={selectedUser}
-            onSelect={() => onSelectUser(user)} // i just put onSelectUser aand it did not work, so this works now.
+            onSelect={() => onSelectUser(user)} // i just put onSelectUser without the callback aand it did not work, so this works now.
           />
         ))}
       </div>
