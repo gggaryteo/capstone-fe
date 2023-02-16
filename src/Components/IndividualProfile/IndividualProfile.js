@@ -7,7 +7,7 @@ import {
   useParams,
 } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
-import getProfile from "../../services/getProfile";
+import getProfile from "../../services/getProfile"; 
 import {
   FaCog,
   FaInstagram,
@@ -17,11 +17,13 @@ import {
 } from "react-icons/fa";
 import "./IndividualProfile.css";
 import EditProfileIcon from '../../assets/editprofile.svg'
+import getUserInterests from "../../services/getUserAndInterests";
 
 const IndividualProfile = () => {
   const { state } = useLocation();
   const [activeTab, setActiveTab] = useState("#about");
   const [{ biography, profilepic, location, firstname, email, online }, setAuthor] = useState(state || {});
+  const [userInterests, setUserInterests] = useState([])
   const { isAuth, headers, loggedUser } = useAuth();
   const { username } = useParams();
   const navigate = useNavigate();
@@ -36,6 +38,16 @@ const IndividualProfile = () => {
         navigate("/not-found", { replace: true });
       });
   }, [username, headers, state, navigate, online]);
+
+  useEffect(() => {
+
+    getUserInterests({username})
+    .then(setUserInterests)
+    .catch((error) => {
+      console.error(error)
+    })
+
+  }, [username]);
 
   const handleTabClick = (event) => {
     const newTab = event.currentTarget.dataset.state;
@@ -95,7 +107,11 @@ const IndividualProfile = () => {
         >
           <div className="card-content">
             <div className="card-subtitle">INTERESTS</div>
-            <p className="card-desc">ALL MY INTERESTS DOWN BELOW</p>
+            <p className="card-desc">
+              {userInterests.map((interest, index) => (
+                <li key={index}>{interest}</li>
+              ))}
+            </p>
           </div>
         </div>
         <div
