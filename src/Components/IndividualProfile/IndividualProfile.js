@@ -16,6 +16,7 @@ import {
   FaGithub,
 } from "react-icons/fa";
 import "./IndividualProfile.css";
+import EditProfileIcon from '../../assets/editprofile.svg'
 
 const IndividualProfile = () => {
   const { state } = useLocation();
@@ -34,7 +35,7 @@ const IndividualProfile = () => {
         console.error(error);
         navigate("/not-found", { replace: true });
       });
-  }, [username, headers, state, navigate]);
+  }, [username, headers, state, navigate, online]);
 
   const handleTabClick = (event) => {
     const newTab = event.currentTarget.dataset.state;
@@ -45,8 +46,20 @@ const IndividualProfile = () => {
     <div className="card" data-state="#about">
       <div className="card-header">
         <div className="card-cover"></div>
+        {loggedUser.username === username ? (
+          <Link to="/editprofile">
+            <img
+              className="edit-profile-icon"
+              src={EditProfileIcon}
+              alt="editicon"
+            />
+          </Link>
+        ) : null}
         <img className="card-avatar" src={profilepic} alt="avatar" />
-        <h1 className="card-fullname">{firstname}</h1>
+        <h1 className="card-fullname">
+          {online && <span className="online-user"></span>}
+          {firstname}
+        </h1>
       </div>
       <div className="card-main">
         <div

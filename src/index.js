@@ -13,6 +13,7 @@ import Chats from "./Pages/Chats/Chats";
 import Meetups from "./Pages/Meetups/Meetups";
 import Requests from "./Pages/Requests/Requests";
 import Profile from "./Pages/Profile/Profile";
+import EditProfile from "./Pages/Profile/EditProfile";
 
 const RootWrapper = () => {
   const { isAuth } = useAuth();
@@ -30,6 +31,7 @@ const RootWrapper = () => {
               <Route path="/meetups" element={<Meetups />} />
               <Route path="/requests" element={<Requests />} />
               <Route path="/profile/:username" element={<Profile />} />
+              <Route path="/editprofile" element={<EditProfile />} />
             </>
           ) : (
             <Route path="/" element={<ErrorNotFound />} />
