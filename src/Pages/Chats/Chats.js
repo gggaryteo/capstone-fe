@@ -4,6 +4,7 @@ import { useAuth } from "../../context/AuthContext";
 import MobileBar from "../../Components/MobileBar/MobileBar";
 import useWindowSize from "../../hooks/useWindowSize";
 import AuthNavbar from "../../Components/AuthNavbar/AuthNavbar";
+import ChatApp from "../../Components/Chat/ChatApp";
 
 const Chats = () => {
   const { loggedUser } = useAuth();
@@ -14,7 +15,7 @@ const Chats = () => {
       {loggedUser && (windowSize.width > 768 ? <Sidebar /> : <MobileBar />)}
       <div className="container">
         <AuthNavbar/>
-        Chats
+        <ChatApp />
       </div>
     </div>
   );

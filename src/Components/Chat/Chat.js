@@ -101,8 +101,6 @@ export default function Chat(props) {
         <br />
         Current logged in userid: {props.userid}
         <br />
-        <button onClick={props.logout}>Logout</button>
-        <br />
         {/* {JSON.stringify(users)} */}
         {selectedUser && (
           <MessagePanel
