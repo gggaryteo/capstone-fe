@@ -14,7 +14,6 @@ import Meetups from "./Pages/Meetups/Meetups";
 import Requests from "./Pages/Requests/Requests";
 import Profile from "./Pages/Profile/Profile";
 import EditProfile from "./Pages/Profile/EditProfile";
-import ChatApp from "./Pages/Chat/ChatApp";
 
 const RootWrapper = () => {
   const { isAuth } = useAuth();
@@ -29,7 +28,6 @@ const RootWrapper = () => {
             <>
               <Route path="/main" element={<Main />} />
               <Route path="/chats" element={<Chats />} />
-              <Route path="/chat" element={<ChatApp />} />
               <Route path="/meetups" element={<Meetups />} />
               <Route path="/requests" element={<Requests />} />
               <Route path="/profile/:username" element={<Profile />} />
@@ -49,15 +47,12 @@ const RootWrapper = () => {
 };
 
 const Root = () => (
-  <React.StrictMode>
-    <BrowserRouter>
-      <AuthProvider>
-        <RootWrapper />
-      </AuthProvider>
-    </BrowserRouter>
-  </React.StrictMode>
+  <BrowserRouter>
+    <AuthProvider>
+      <RootWrapper />
+    </AuthProvider>
+  </BrowserRouter>
 );
 
-
 const root = ReactDOM.createRoot(document.getElementById("root"));
-root.render(<Root/>);
+root.render(<Root />);
