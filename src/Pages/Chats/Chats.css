@@ -8,3 +8,16 @@
   flex-grow: 1;
   padding: 0 30px;
 }
+
+.userpanel-sidebar {
+  width: 260px;
+  background: #3f0e40;
+  min-height: 100vh;
+  box-sizing: border-box;
+  position: relative;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  overflow-x: hidden;
+  color: #fff;
+}
