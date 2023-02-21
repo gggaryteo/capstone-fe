@@ -1,11 +1,8 @@
 import React, { useEffect, useState } from "react";
-import axios from "axios";
 import "./Dashboard.css";
 import getUsersByLocation from "../../services/getUsersByLocation";
-import React, { useState, useEffect } from "react";
 import { useAuth } from "../../context/AuthContext";
 import Cards from "../Cards/Cards";
-
 
 const Dashboard = () => {
   const { loggedUser } = useAuth();
@@ -23,12 +20,9 @@ const Dashboard = () => {
 
   return (
     <>
-      <Cards usersByLocation={usersByLocation}/>
+      <Cards usersByLocation={usersByLocation} />
     </>
   );
 };
 
 export default Dashboard;
-
-
-
