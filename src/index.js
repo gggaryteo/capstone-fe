@@ -11,7 +11,6 @@ import AuthProvider, { useAuth } from "./context/AuthContext";
 import Main from "./Pages/Main/Main";
 import Chats from "./Pages/Chats/Chats";
 import Meetups from "./Pages/Meetups/Meetups";
-import Requests from "./Pages/Requests/Requests";
 import Profile from "./Pages/Profile/Profile";
 import EditProfile from "./Pages/Profile/EditProfile";
 import AddMeetup from "./Pages/Meetups/AddMeetup.js";
@@ -30,7 +29,6 @@ const RootWrapper = () => {
               <Route path="/main" element={<Main />} />
               <Route path="/chats" element={<Chats />} />
               <Route path="/meetups" element={<Meetups />} />
-              <Route path="/requests" element={<Requests />} />
               <Route path="/profile/:username" element={<Profile />} />
               <Route path="/editprofile" element={<EditProfile />} />
               <Route path="/meetupform/:chatId" element={<AddMeetup />} />

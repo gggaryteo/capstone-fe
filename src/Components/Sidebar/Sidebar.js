@@ -48,16 +48,6 @@ const Sidebar = () => {
               </NavLink>
             </li>
             <li>
-              <NavLink to="/requests">
-                <FaPeopleArrows
-                  fill="true"
-                  className="icons"
-                  alt="request-icon"
-                />
-                <span>Requests</span>
-              </NavLink>
-            </li>
-            <li>
               <NavLink to={`/profile/${username}`}>
                 <FaIdBadge fill="true" className="icons" alt="request-icon" />
                 <span>Profile</span>

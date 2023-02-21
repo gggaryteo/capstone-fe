@@ -33,11 +33,6 @@ const MobileBar = () => {
           <span className="menu-item-label">Meetups</span>
         </NavLink>
 
-        <NavLink className="menu-item" to="/requests">
-          <FaPeopleArrows className="icons" alt="request-icon" />
-          <span className="menu-item-label">Requests</span>
-        </NavLink>
-
         <NavLink className="menu-item" to={`/profile/${username}`}>
           <FaIdBadge className="icons" alt="request-icon" />
           <span className="menu-item-label">Profile</span>
