@@ -21,7 +21,7 @@ const Sidebar = () => {
       <div className="sidebar-content">
         <div className="user">
           <DropdownMenu src={loggedUser.profilepic}>{userInitial}</DropdownMenu>
-          <p> Hello {loggedUser.username}! </p>
+          <p> Hello {loggedUser.firstname}! </p>
         </div>
         <nav className="links">
           <ul>
@@ -59,11 +59,7 @@ const Sidebar = () => {
             </li>
             <li>
               <NavLink to={`/profile/${username}`}>
-                <FaIdBadge
-                  fill="true"
-                  className="icons"
-                  alt="request-icon"
-                />
+                <FaIdBadge fill="true" className="icons" alt="request-icon" />
                 <span>Profile</span>
               </NavLink>
             </li>

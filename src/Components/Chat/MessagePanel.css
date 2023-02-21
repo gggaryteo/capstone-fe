@@ -78,10 +78,21 @@
 }
 
 .chatBoxBanner {
-  display:flex;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   line-height: 40px;
   padding: 10px 20px;
   border-bottom: 1px solid #dddddd;
+}
+
+.chatBoxFriend {
+  display: flex;
+  align-items: center;
+  font-weight: 500;
+  padding: 10px;
+  cursor: pointer;
+  margin-top: 10px;
 }
 
 .chatBoxBannerImgContainer {
@@ -125,6 +136,3 @@
   background-color: teal;
   color: white;
 }
-
-
-

@@ -3,6 +3,7 @@ import socket from "../../socket";
 import StatusIcon from "./StatusIcon";
 import "./MessagePanel.css";
 import { useAuth } from "../../context/AuthContext";
+import { Link } from "react-router-dom";
 
 export default function MessagePanel(props) {
   const [input, setInput] = useState("");
@@ -46,15 +47,20 @@ export default function MessagePanel(props) {
   return (
     <>
       <div className="chatBoxBanner">
-        <div className="chatBoxBannerImgContainer">
-          <img
-            className="chatBoxBannerImg"
-            src={props.user.profilepic}
-            alt="pfp"
-          />
-          <StatusIcon isOnline={props.user.connected} />
+        <div className="chatBoxFriend">
+          <div className="chatBoxBannerImgContainer">
+            <img
+              className="chatBoxBannerImg"
+              src={props.user.profilepic}
+              alt="pfp"
+            />
+            <StatusIcon isOnline={props.user.connected} />
+          </div>
+          <span className="chatOnlineName">{props.user.firstname}</span>
         </div>
-        <span className="chatOnlineName">{props.user.username}</span>
+        <div>
+          <Link to={`/meetupform/${props.user.chatid}`}>Add meetup</Link>
+        </div>
       </div>
       <div className="chatBoxTop">
         {props.user.messages &&

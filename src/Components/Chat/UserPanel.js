@@ -15,7 +15,7 @@ export default function UserPanel(props) {
         <img className="chatOnlineImg" src={props.user.profilepic} alt="ppg" />
         <StatusIcon isOnline={props.user.connected} />
       </div>
-      <span className="chatOnlineName">{props.user.username}</span>
+      <span className="chatOnlineName">{props.user.firstname}</span>
     </div>
   );
 }

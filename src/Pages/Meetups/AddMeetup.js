@@ -4,7 +4,7 @@ import { useAuth } from "../../context/AuthContext";
 import MobileBar from "../../Components/MobileBar/MobileBar";
 import useWindowSize from "../../hooks/useWindowSize";
 import AuthNavbar from "../../Components/AuthNavbar/AuthNavbar";
-import Meetup from "../../Components/Meetup/Meetup";
+import MeetupForm from "../../Components/Meetup/MeetupForm";
 
 const Meetups = () => {
   const { loggedUser } = useAuth();
@@ -15,7 +15,7 @@ const Meetups = () => {
       {loggedUser && (windowSize.width > 768 ? <Sidebar /> : <MobileBar />)}
       <div className="container">
         <AuthNavbar />
-        <Meetup />
+        <MeetupForm />
       </div>
     </div>
   );
