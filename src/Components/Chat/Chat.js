@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
 import socket from "../../socket";
 import "./Chat.css";
@@ -10,6 +10,8 @@ export default function Chat() {
   const [isLoaded, setIsLoaded] = useState(false);
   const [selectedUser, setSelectedUser] = useState(null); // for userPanel
   const [users, setUsers] = useState([]);
+
+  const navigate = useNavigate();
 
   const { loggedUser } = useAuth();
 
@@ -115,6 +117,7 @@ export default function Chat() {
                   user={selectedUser}
                   currentuserid={socket.auth.userID}
                   pushMessage={pushMessage}
+                  viewProfile={()=>{navigate(`/profile/${selectedUser.username}`)}}
                 />
               ) : (
                 <h1>Click on a conversation to begin </h1>

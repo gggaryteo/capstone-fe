@@ -47,7 +47,10 @@ export default function MessagePanel(props) {
   return (
     <>
       <div className="chatBoxBanner">
-        <div className="chatBoxFriend">
+        <div
+          onClick={props.viewProfile}
+          className="chatBoxFriend"
+        >
           <div className="chatBoxBannerImgContainer">
             <img
               className="chatBoxBannerImg"

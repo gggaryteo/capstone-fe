@@ -1,6 +1,6 @@
 import React from "react";
 import "./MeetupCard.css";
-import dateFormatter from "../../helpers/dateFormatter";
+import dateTimeFormatter from "../../helpers/dateTimeFormatter";
 
 export default function MeetupCard(props) {
   const acceptbutton = (
@@ -20,7 +20,7 @@ export default function MeetupCard(props) {
       Title: {props.event.title} <br />
       Created by: {props.event.author.firstname}
       <br />
-      Date & Time: {dateFormatter(props.event.datetime)} <br />
+      Date & Time: {dateTimeFormatter(props.event.datetime)} <br />
       Location: {props.event.location} <br />
       Description:{props.event.comment} <br />
       Pending: {String(props.event.pending)}
