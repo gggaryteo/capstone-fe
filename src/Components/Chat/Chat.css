@@ -1,14 +1,29 @@
-.left-panel {
-  position: fixed;
-  left: 0;
-  top: 0;
-  bottom: 0;
-  width: 260px;
-  overflow-x: hidden;
-  background-color: #3f0e40;
-  color: white;
+.messenger {
+  min-height: 800px;
+  max-height: 800px;
+  display: flex;
+  overflow-y: hidden;
+  margin-top: -50px;
 }
 
-.right-panel {
-  margin-left: 260px;
+.chatBox {
+  flex: 9;
+}
+
+.chatOnline {
+  flex: 3;
+}
+
+.chatBoxWrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+}
+
+.chatBoxWrapper,
+.chatOnlineWrapper {
+  padding: 10px;
+  
+  height: 100%;
 }

@@ -1,12 +1,13 @@
 .icon-chat {
-  height: 8px;
-  width: 8px;
+  width: 10px;
+  height: 10px;
   border-radius: 50%;
-  display: inline-block;
-  background-color: #e38968;
-  margin-right: 6px;
+  background-color: red;
+  position: absolute;
+  top: 2px;
+  right: 2px;
 }
 
 .connected {
-  background-color: #86bb71;
+  background-color: limegreen;
 }

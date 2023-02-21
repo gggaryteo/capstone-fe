@@ -1,12 +1,30 @@
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
+import { useAuth } from "../../context/AuthContext";
 import socket from "../../socket";
 import "./Chat.css";
 import MessagePanel from "./MessagePanel";
 import UserPanel from "./UserPanel";
 
-export default function Chat(props) {
+export default function Chat() {
+  const [isLoaded, setIsLoaded] = useState(false);
   const [selectedUser, setSelectedUser] = useState(null); // for userPanel
   const [users, setUsers] = useState([]);
+
+  const { loggedUser } = useAuth();
+
+  useEffect(() => {
+    console.log("what is loggedUser? ", loggedUser);
+    socket.auth = { username: loggedUser.username, userID: loggedUser.id };
+    console.log("what is socket.auth? ", socket.auth);
+    socket.connect();
+    setIsLoaded(true);
+    return () => {
+      socket.off("connect_error"); //include cleanup - disconnect on unmount
+      socket.disconnect();
+      setIsLoaded(false);
+    };
+  }, [loggedUser]);
 
   useEffect(() => {
     //  const initReactiveProperties = (user) => {
@@ -84,32 +102,38 @@ export default function Chat(props) {
       return copyuser;
     });
   };
-
   return (
     <div>
-      <div className="left-panel">
-        {users.map((user) => (
-          <UserPanel
-            user={user}
-            selecteduserid={selectedUser}
-            onSelect={() => onSelectUser(user)} // i just put onSelectUser without the callback aand it did not work, so this works now.
-          />
-        ))}
-      </div>
-      <div className="right-panel">
-        Current logged in username: {props.username}
-        <br />
-        Current logged in userid: {props.userid}
-        <br />
-        {/* {JSON.stringify(users)} */}
-        {selectedUser && (
-          <MessagePanel
-            user={selectedUser}
-            currentuserid={props.userid}
-            pushMessage={pushMessage}
-          />
-        )}
-      </div>
+      {isLoaded && (
+        <div className="messenger">
+          <div className="chatBox">
+            {/* Logged in as: {socket.auth.username} of userid {socket.auth.userID} */}
+            {/* {JSON.stringify(users)} */}
+            <div className="chatBoxWrapper">
+              {selectedUser ? (
+                <MessagePanel
+                  user={selectedUser}
+                  currentuserid={socket.auth.userID}
+                  pushMessage={pushMessage}
+                />
+              ) : (
+                <h1>Click on a conversation to begin </h1>
+              )}
+            </div>
+          </div>
+          <div className="chatOnline">
+            <div className="chatOnlineWrapper">
+              {users.map((user) => (
+                <UserPanel
+                  user={user}
+                  selecteduserid={selectedUser}
+                  onSelect={() => onSelectUser(user)} // i just put onSelectUser without the callback aand it did not work, so this works now.
+                />
+              ))}
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

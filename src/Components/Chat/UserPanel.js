@@ -5,21 +5,17 @@ import "./UserPanel.css";
 export default function UserPanel(props) {
   let classname = props.selecteduserid
     ? props.selecteduserid.userID == props.user.userID
-      ? "user selected"
-      : "user"
-    : "user";
-  let status = props.user.connected ? "online" : "offline";
+      ? "chatOnlineFriend selected"
+      : "chatOnlineFriend"
+    : "chatOnlineFriend";
 
   return (
     <div onClick={props.onSelect} className={classname}>
-      <div className="description">
-        <div className="name">{props.user.username}</div>
-        <div className="status">
-          <StatusIcon isOnline={props.user.connected} />
-          {status}
-        </div>
+      <div className="chatOnlineImgContainer">
+        <img className="chatOnlineImg" src={props.user.profilepic} alt="ppg" />
+        <StatusIcon isOnline={props.user.connected} />
       </div>
-      <div className="new-messages">!</div>
+      <span className="chatOnlineName">{props.user.username}</span>
     </div>
   );
 }
