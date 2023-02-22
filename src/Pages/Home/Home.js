@@ -7,11 +7,13 @@ import AuthModal from "../AuthModal/AuthModal";
 import Navbar from "../../Components/Navbar/Navbar";
 import { useAuth } from "../../context/AuthContext";
 import userLogout from "../../services/userLogout";
+import { useNavigate } from "react-router-dom";
 
 const Home = () => {
   const [isSignUp, setIsSignUp] = useState(true);
   const [openModal, setOpenModal] = useState(false);
   const { setAuthState, isAuth, loggedUser } = useAuth();
+  const navigate = useNavigate();
 
   const handleClick = () => {
     console.log("User clicked");
@@ -21,6 +23,10 @@ const Home = () => {
 
   const handleSignOut = () => {
     setAuthState(userLogout(loggedUser.email))
+  }
+
+  const handleDashboard = () => {
+    navigate("/main")
   }
 
   return (
@@ -34,7 +40,11 @@ const Home = () => {
       <div className="home-page">
         <h1 className="primary-title">Frienemies®</h1>
         {!isAuth ? <button className="homepage-button" onClick={handleClick}> Create Account </button> :
-        <button className="homepage-button" onClick={handleSignOut}> Sign Out</button>}
+        <>
+        <button className="homepage-button" onClick={handleSignOut}> Sign Out</button>
+        <button className="homepage-button" onClick={handleDashboard}> Dashboard</button>
+        </>
+        }
 
         {openModal && (
           <AuthModal
