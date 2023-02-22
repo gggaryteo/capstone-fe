@@ -183,7 +183,7 @@ const InterestCards = ({ usersByInterests, setUsersByInterests, usersByLocation,
                       bg={user?.profilepic}
                     >
                       <ImageListItemBar
-                        title={`${user?.username}, ${user?.gender} `}
+                        title={`${user?.firstname}, ${user?.gender} `}
                         subtitle={user?.course}
                       />
                     </ImgDiv>
