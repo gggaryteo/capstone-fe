@@ -41,24 +41,24 @@ const LocationCards = ({ usersByLocation, setUsersByLocation, usersByInterests, 
 
   const cardStyles = {
     maxWidth: 345,
-    height: 500,
+    minHeight: 600,
     mx: "auto",
     my: "1.3rem",
     [breakpoints.xs]: {
       maxWidth: "90vw",
-      height: 450,
+      minHeight: 450,
     },
     [breakpoints.sm]: {
       maxWidth: "80vw",
-      height: 550,
+      minHeight: 550,
     },
     [breakpoints.md]: {
       maxWidth: "70vw",
-      height: 600,
+      minHeight: 600,
     },
     [breakpoints.lg]: {
       maxWidth: "60vw",
-      height: 650,
+      minHeight: 650,
     },
   };
 
@@ -143,22 +143,23 @@ const LocationCards = ({ usersByLocation, setUsersByLocation, usersByInterests, 
               <Card
                 sx={{
                   ...cardStyles,
-                  // Use media queries to adjust card size for different screen sizes
+                  width: "auto", // set a fixed height for the card
+                  overflow: "hidden", // hide overflowing text
                   ...(isXs && {
                     maxWidth: "90vw",
-                    height: 500,
+                    minHeight: 500,
                   }),
                   ...(isSm && {
                     maxWidth: "80vw",
-                    height: 550,
+                    minHeight: 550,
                   }),
                   ...(isMd && {
                     maxWidth: "70vw",
-                    height: 600,
+                    minHeight: 600,
                   }),
                   ...(isLg && {
-                    maxWidth: "60vw",
-                    height: 650,
+                    maxWidth: "70vw",
+                    minHeight: 650,
                   }),
                   "@media (maxWidth: 375px)": {
                     height: "70",
@@ -178,7 +179,7 @@ const LocationCards = ({ usersByLocation, setUsersByLocation, usersByInterests, 
                       className="img-div"
                       style={{
                         backgroundImage: `url(${user?.profilepic})`,
-                        height: "330px"
+                        height: "330px",
                       }}
                       bg={user?.profilepic}
                     >
@@ -192,7 +193,7 @@ const LocationCards = ({ usersByLocation, setUsersByLocation, usersByInterests, 
                   {/* user detail  */}
                   <CardContent
                     sx={{
-                      minWidth: 345,
+                      minWidth: "300px",
                       mx: "auto",
                     }}
                   >
@@ -200,6 +201,7 @@ const LocationCards = ({ usersByLocation, setUsersByLocation, usersByInterests, 
                       variant="h3"
                       sx={{
                         fontSize: "32px",
+                        wordBreak: "break-word",
                         "@media (maxWidth: 375px)": {
                           fontSize: "20px",
                         },
@@ -212,6 +214,7 @@ const LocationCards = ({ usersByLocation, setUsersByLocation, usersByInterests, 
                       sx={{
                         mx: "auto",
                         py: 1,
+                        wordBreak: "break-word",
                       }}
                     >
                       {user?.biography}

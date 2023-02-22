@@ -150,6 +150,7 @@
   margin: 0;
   font-weight: 400;
   font-family: "DM Sans", sans-serif;
+  word-wrap: break-word;
 }
 
 /* Socials  */
