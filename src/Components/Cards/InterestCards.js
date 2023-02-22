@@ -67,65 +67,60 @@ const InterestCards = ({ usersByInterests, setUsersByInterests, usersByLocation,
   const isMd = useMediaQuery(breakpoints.md);
   const isLg = useMediaQuery(breakpoints.lg);
 
-  const swiped = async (direction, userId) => {
-    setIsSwiped(async (current) => {
-      if (!current) {
-        switch (direction) {
-          case "right":
-            const sendInfo = {
-              senderId: loggedUser.id,
-              recipientId: userId,
-              isRejected: false,
-            };
-            console.log(sendInfo);
-            try {
-              const res = await axios.post(
-                "http://localhost:3001/chats/swipe",
-                sendInfo
-              );
-              console.log(res);
-              setUsersByLocation(
-                usersByLocation.filter((user) => user.id !== userId)
-              );
-              setUsersByInterests(
-                usersByInterests.filter((user) => user.id !== userId)
-              );
-            } catch (error) {
-              console.log(error);
-            }
-            return;
+ const swiped = async (direction, userId) => {
+   if (!isSwiped) {
+     setIsSwiped(true);
+     try {
+       switch (direction) {
+         case "right":
+           const sendInfo = {
+             senderId: loggedUser.id,
+             recipientId: userId,
+             isRejected: false,
+           };
+           console.log(sendInfo);
+           const res = await axios.post(
+             "http://localhost:3001/chats/swipe",
+             sendInfo
+           );
+           console.log(res);
+           setUsersByLocation(
+             usersByLocation.filter((user) => user.id !== userId)
+           );
+           setUsersByInterests(
+             usersByInterests.filter((user) => user.id !== userId)
+           );
+           break;
 
-          case "left":
-            const sendRejectedInfo = {
-              senderId: loggedUser.id,
-              recipientId: userId,
-              isRejected: true,
-            };
+         case "left":
+           const sendRejectedInfo = {
+             senderId: loggedUser.id,
+             recipientId: userId,
+             isRejected: true,
+           };
+           const respond = await axios.post(
+             "http://localhost:3001/chats/swipe",
+             sendRejectedInfo
+           );
+           console.log(respond);
+           setUsersByLocation(
+             usersByLocation.filter((user) => user.id !== userId)
+           );
+           setUsersByInterests(
+             usersByInterests.filter((user) => user.id !== userId)
+           );
+           break;
 
-            try {
-              const respond = await axios.post(
-                "http://localhost:3001/chats/swipe",
-                sendRejectedInfo
-              );
-              console.log(respond);
-              setUsersByLocation(
-                usersByLocation.filter((user) => user.id !== userId)
-              );
-              setUsersByInterests(
-                usersByInterests.filter((user) => user.id !== userId)
-              );
-            } catch (error) {
-              console.log(error);
-            }
-            return;
-
-          default:
-            break;
-        }
-      }
-      return true;
-    });
-  };
+         default:
+           break;
+       }
+     } catch (error) {
+       console.log(error);
+     } finally {
+       setIsSwiped(false);
+     }
+   }
+ };
 
   return (
     <>
