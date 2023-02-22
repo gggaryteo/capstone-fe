@@ -1,6 +1,10 @@
 import React from "react";
 import "./MeetupCard.css";
 import dateTimeFormatter from "../../helpers/dateTimeFormatter";
+import Card from "@mui/material/Card";
+import { CardContent } from "@mui/material";
+import { Grid } from "@mui/material";
+import { Link } from "react-router-dom";
 
 export default function MeetupCard(props) {
   const acceptbutton = (
@@ -17,25 +21,35 @@ export default function MeetupCard(props) {
 
   return (
     <div className={props.event.rejected && "inactive"}>
+
       Title: {props.event.title} <br />
+
       Created by: {props.event.author.firstname}
       <br />
+
       Date & Time: {dateTimeFormatter(props.event.datetime)} <br />
+
       Location: {props.event.location} <br />
+
       Description:{props.event.comment} <br />
+
       Pending: {String(props.event.pending)}
       <br />
+
       Rejected: {String(props.event.rejected)}
       <br />
-      Other Party ID:{" "}
+
+      Other Party ID:
       {props.event.chat.user1_id !== props.event.author_id
         ? props.event.chat.user1_id
         : props.event.chat.user2_id}
       <br />
-      Other Party Name:{" "}
+
+      Other Party Name:
       {props.event.chat.user1_id !== props.event.author_id
         ? props.event.chat.user1.firstname
         : props.event.chat.user2.firstname}
+
       {!(props.event.accepted || props.event.rejected) &&
         (props.event.pending &&
         props.event.author_id === props.loggeduser.id ? (
@@ -46,9 +60,11 @@ export default function MeetupCard(props) {
             {rejectbutton}
           </div>
         ))}
+
       <br />
       <br />
       <br />
+
     </div>
   );
 }

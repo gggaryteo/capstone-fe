@@ -2,10 +2,12 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useAuth } from "../../context/AuthContext";
 import MeetupCard from "./MeetupCard";
+import './Meetup.css'
 
 export default function Meetup() {
   const [meetupList, setMeetupList] = useState([]);
-  const [filter, setFilter] = useState("0");
+  const [currentFilter, setCurrentFilter] = useState("All");
+
 
   const { loggedUser } = useAuth();
 
@@ -59,33 +61,47 @@ export default function Meetup() {
     return meetup.rejected;
   };
 
-  const filters = [all, received, sent, upcoming, expiredorcancelled];
+  const filters = [all, upcoming, received, sent, expiredorcancelled];
+
+  const INITIAL_ARRAY = [
+    "All",
+    "Upcoming",
+    "Pending - Received",
+    "Pending - Sent",
+    "Expired/Cancelled",
+  ];
+
+  const handleClick = (filter) => {
+    setCurrentFilter(filter);
+  };
 
   return (
     <div>
-      <select
-        value={filter}
-        onChange={(e) => {
-          setFilter(e.target.value);
-        }}
-      >
-        <option value="0">All</option>
-        <option value="1">Pending - Received</option>
-        <option value="2">Pending - Sent</option>
-        <option value="3">Upcoming</option>
-        <option value="4">Expired/Cancelled</option>
-      </select>
-      <br />
-      <br />
-      {meetupList.filter(filters[Number(filter)]).map((meetup) => (
-        <MeetupCard
-          event={meetup}
-          loggeduser={loggedUser}
-          accept={acceptMeetup}
-          reject={deleteOrCancelMeetup}
-          cancel={deleteOrCancelMeetup}
-        />
-      ))}
+      <div className="project-filter">
+        <nav className="filter-nav">
+          {INITIAL_ARRAY.map((item) => (
+            <button
+              className={currentFilter === item ? "active" : ""}
+              key={item}
+              onClick={() => handleClick(item)}
+            >
+              {item}
+            </button>
+          ))}
+        </nav>
+      </div>
+
+      {meetupList
+        .filter(filters[INITIAL_ARRAY.indexOf(currentFilter)])
+        .map((meetup) => (
+          <MeetupCard
+            event={meetup}
+            loggeduser={loggedUser}
+            accept={acceptMeetup}
+            reject={deleteOrCancelMeetup}
+            cancel={deleteOrCancelMeetup}
+          />
+        ))}
     </div>
   );
 }
