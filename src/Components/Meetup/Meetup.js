@@ -2,12 +2,15 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useAuth } from "../../context/AuthContext";
 import MeetupCard from "./MeetupCard";
-import './Meetup.css'
+import "./Meetup.css";
+import Carousel from "react-material-ui-carousel";
+import useWindowSize from "../../hooks/useWindowSize";
+import { Grid } from "@mui/material";
 
 export default function Meetup() {
   const [meetupList, setMeetupList] = useState([]);
   const [currentFilter, setCurrentFilter] = useState("All");
-
+  const windowSize = useWindowSize();
 
   const { loggedUser } = useAuth();
 
@@ -66,8 +69,8 @@ export default function Meetup() {
   const INITIAL_ARRAY = [
     "All",
     "Upcoming",
-    "Pending - Received",
-    "Pending - Sent",
+    "Received",
+    "Sent",
     "Expired/Cancelled",
   ];
 
@@ -76,7 +79,14 @@ export default function Meetup() {
   };
 
   return (
-    <div>
+    <div
+      style={{
+        maxHeight: "800px",
+        overflowY: "auto",
+        overflowX: "hidden",
+        marginTop: "-70px",
+      }}
+    >
       <div className="project-filter">
         <nav className="filter-nav">
           {INITIAL_ARRAY.map((item) => (
@@ -90,18 +100,44 @@ export default function Meetup() {
           ))}
         </nav>
       </div>
-
-      {meetupList
-        .filter(filters[INITIAL_ARRAY.indexOf(currentFilter)])
-        .map((meetup) => (
-          <MeetupCard
-            event={meetup}
-            loggeduser={loggedUser}
-            accept={acceptMeetup}
-            reject={deleteOrCancelMeetup}
-            cancel={deleteOrCancelMeetup}
-          />
-        ))}
+      {windowSize.width < 1232 ? (
+        <Carousel>
+          {meetupList
+            .filter(filters[INITIAL_ARRAY.indexOf(currentFilter)])
+            .map((meetup) => (
+              <MeetupCard
+                key={meetup.id}
+                event={meetup}
+                loggeduser={loggedUser}
+                accept={acceptMeetup}
+                reject={deleteOrCancelMeetup}
+                cancel={deleteOrCancelMeetup}
+              />
+            ))}
+        </Carousel>
+      ) : (
+        <Grid
+          container
+          spacing={5}
+          direction="row"
+          marginTop="10px"
+          justifyContent="flex-start"
+        >
+          {meetupList
+            .filter(filters[INITIAL_ARRAY.indexOf(currentFilter)])
+            .map((meetup) => (
+              <Grid item key={meetup.id} md={4} xs={12} sm={6}>
+                <MeetupCard
+                  event={meetup}
+                  loggeduser={loggedUser}
+                  accept={acceptMeetup}
+                  reject={deleteOrCancelMeetup}
+                  cancel={deleteOrCancelMeetup}
+                />
+              </Grid>
+            ))}
+        </Grid>
+      )}
     </div>
   );
 }
