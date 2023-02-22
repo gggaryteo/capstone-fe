@@ -28,7 +28,7 @@ const ImgDiv = style.div`
   background-repeat: no-repeat;
 `;
 
-const LocationCards = ({ usersByLocation }) => {
+const LocationCards = ({ usersByLocation, setUsersByLocation, usersByInterests, setUsersByInterests }) => {
   const [isSwiped, setIsSwiped] = useState(false);
   const { loggedUser } = useAuth();
   const theme = useTheme();
@@ -84,6 +84,12 @@ const LocationCards = ({ usersByLocation }) => {
                 sendInfo
               );
               console.log(res);
+              setUsersByLocation(
+                usersByLocation.filter((user) => user.id !== userId)
+              );
+              setUsersByInterests(
+                usersByInterests.filter((user) => user.id !== userId)
+              );
             } catch (error) {
               console.log(error);
             }
@@ -102,6 +108,12 @@ const LocationCards = ({ usersByLocation }) => {
                 sendRejectedInfo
               );
               console.log(respond);
+              setUsersByLocation(
+                usersByLocation.filter((user) => user.id !== userId)
+              );
+              setUsersByInterests(
+                usersByInterests.filter((user) => user.id !== userId)
+              );
             } catch (error) {
               console.log(error);
             }
@@ -148,7 +160,7 @@ const LocationCards = ({ usersByLocation }) => {
                     maxWidth: "60vw",
                     height: 650,
                   }),
-                  "@media (max-width: 375px)": {
+                  "@media (maxWidth: 375px)": {
                     height: "70",
                     width: "75vw",
                   },
@@ -174,13 +186,6 @@ const LocationCards = ({ usersByLocation }) => {
                         title={`${user?.username}, ${user?.gender} `}
                         subtitle={user?.course}
                       />
-                      <style jsx>{`
-                        @media (max-width: 375px) {
-                          .img-div {
-                            height: 250px;
-                          }
-                        }
-                      `}</style>
                     </ImgDiv>
                   </ImageListItem>
 
@@ -194,9 +199,9 @@ const LocationCards = ({ usersByLocation }) => {
                     <Typography
                       variant="h3"
                       sx={{
-                        fontSize: "35px",
-                        "@media (max-width: 375px)": {
-                          fontSize: "25px",
+                        fontSize: "32px",
+                        "@media (maxWidth: 375px)": {
+                          fontSize: "20px",
                         },
                       }}
                     >
