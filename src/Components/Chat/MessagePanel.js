@@ -47,10 +47,7 @@ export default function MessagePanel(props) {
   return (
     <>
       <div className="chatBoxBanner">
-        <div
-          onClick={props.viewProfile}
-          className="chatBoxFriend"
-        >
+        <div onClick={props.viewProfile} className="chatBoxFriend">
           <div className="chatBoxBannerImgContainer">
             <img
               className="chatBoxBannerImg"
@@ -90,7 +87,7 @@ export default function MessagePanel(props) {
                     />
                     <p className="messageText">{message.content}</p>
                   </div>
-                  <div className="messageBottom">1 hour ago</div>
+                  {/* <div className="messageBottom">1 hour ago</div> */}
                 </div>
               </div>
             );
