@@ -8,11 +8,10 @@ import InterestCards from "../Cards/InterestCards";
 import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 
-
 const Dashboard = () => {
   const { loggedUser } = useAuth();
   const [usersByLocation, setUsersByLocation] = useState([]);
-  const [usersByInterests, setUsersByInterests] = useState([])
+  const [usersByInterests, setUsersByInterests] = useState([]);
   const [selectedTab, setSelectedTab] = useState(0);
 
   useEffect(() => {
@@ -24,16 +23,16 @@ const Dashboard = () => {
   }, [loggedUser]);
 
   useEffect(() => {
-      async function fetchUsersByInterest() {
-        const recommendedUsersByInt = await getUsersByInterests(loggedUser);
-        setUsersByInterests(recommendedUsersByInt);
-      }
-      fetchUsersByInterest();
-    }, [loggedUser]);
+    async function fetchUsersByInterest() {
+      const recommendedUsersByInt = await getUsersByInterests(loggedUser);
+      setUsersByInterests(recommendedUsersByInt);
+    }
+    fetchUsersByInterest();
+  }, [loggedUser]);
 
-    const handleTabChange = (event, newValue) => {
-      setSelectedTab(newValue);
-    };
+  const handleTabChange = (event, newValue) => {
+    setSelectedTab(newValue);
+  };
 
   return (
     <>
@@ -42,7 +41,7 @@ const Dashboard = () => {
           display: "flex",
           justifyContent: "center",
           marginTop: "-100px",
-          "@media (max-width: 375px)": { marginTop: "-200px" },
+          "@media (maxWidth: 375px)": { marginTop: "-200px" },
         }}
       >
         <Tabs
@@ -55,9 +54,21 @@ const Dashboard = () => {
           <Tab label="By Interests" />
         </Tabs>
       </div>
-      {selectedTab === 0 && <LocationCards usersByLocation={usersByLocation} />}
+      {selectedTab === 0 && (
+        <LocationCards
+          usersByLocation={usersByLocation}
+          setUsersByLocation={setUsersByLocation}
+          usersByInterests={usersByInterests}
+          setUsersByInterests={setUsersByInterests}
+        />
+      )}
       {selectedTab === 1 && (
-        <InterestCards usersByInterests={usersByInterests} />
+        <InterestCards
+          usersByLocation={usersByLocation}
+          setUsersByLocation={setUsersByLocation}
+          usersByInterests={usersByInterests}
+          setUsersByInterests={setUsersByInterests}
+        />
       )}
     </>
   );

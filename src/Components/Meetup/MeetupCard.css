@@ -1,3 +1,111 @@
 .inactive {
-  color: lightgrey
+  color: lightgrey;
+}
+
+.rejected-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.rejected-overlay span {
+  transform: rotate(-45deg);
+  background-color: red;
+  color: white;
+  padding: 10px;
+  font-weight: bold;
+  font-size: 24px;
+}
+
+.rejected-logo {
+  width: 350px;
+  height: 350px;
+}
+
+.wrapper {
+  background: #e47afc;
+  display: flex;
+  flex-direction: column;
+  padding: 1.5em;
+  width: 100%;
+  height: 100%;
+  border-radius: 10px;
+  position: relative;
+}
+
+.inactive .wrapper::before {
+  opacity: 1;
+}
+
+.upper {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.7);
+  color: white;
+  font-weight: 400;
+  font-size: 25px;
+  line-height: 2;
+  text-transform: uppercase;
+  padding-top: 10px;
+}
+
+.meetup {
+  color: white;
+  font-size: 33px;
+  font-weight: 700;
+  line-height: 1;
+  text-decoration: none;
+  padding-top: 10px;
+}
+
+.group {
+  color: rgb(222, 222, 222);
+  padding-top: 15px;
+  flex-grow: 1;
+}
+
+.meetup-card-icon {
+  display: inline-block;
+  position: relative;
+  top: -0.1em;
+  vertical-align: middle;
+}
+
+.details {
+  display: flex;
+  flex-direction: column;
+  color: white;
+  margin-top: 40px;
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  margin-top: 10px;
+}
+
+.row-item {
+  padding-left: 5px;
+}
+
+@media (max-width: 1232px) {
+  .button-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+
+  .button-container.cancel-button {
+    gap: 0;
+  }
+}
+
+.a-btn {
+  margin-right: 10px;
 }
