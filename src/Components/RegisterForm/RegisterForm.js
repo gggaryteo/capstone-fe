@@ -24,17 +24,17 @@ const userParams = {
   online: null,
 };
 
-const RegisterForm = ( { onError }) => {
+const RegisterForm = ({ onError }) => {
   const navigate = useNavigate();
   const { setAuthState } = useAuth();
   const [current, setCurrent] = useState("Credentials");
   const [credentials, setCredentials] = useState({
-    username: "Test User",
-    password: "12345",
+    username: "",
+    password: "",
   });
   const [emailName, setEmailName] = useState({
-    firstname: "Test",
-    email: "testuser@gmail.com",
+    firstname: "",
+    email: "",
   });
   const [location, setLocation] = useState({ location: "" });
   const [birthGender, setBirthGender] = useState({
@@ -84,10 +84,10 @@ const RegisterForm = ( { onError }) => {
 
     if (isNotNull) {
       userSignUp({ ...allUserParams, online: true })
-          .then(setAuthState)
-          .then(() => navigate("/main"))
-          .catch(onError)
-          
+        .then(setAuthState)
+        .then(() => navigate("/main"))
+        .catch(onError);
+
       setIsPost(false);
     }
   };
