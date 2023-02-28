@@ -1,9 +1,13 @@
 import React, { useEffect, useRef, useState } from "react";
 import socket from "../../socket";
 import StatusIcon from "./StatusIcon";
+import dateTimeFormatter from "../../helpers/dateTimeFormatter";
 import "./MessagePanel.css";
 import { useAuth } from "../../context/AuthContext";
 import { Link } from "react-router-dom";
+import EventIcon from "@mui/icons-material/Event";
+import { pink } from "@mui/material/colors";
+import Tooltip from "@mui/material/Tooltip";
 
 export default function MessagePanel(props) {
   const [input, setInput] = useState("");
@@ -19,11 +23,13 @@ export default function MessagePanel(props) {
       from_id: props.currentuserid,
       content: input,
       chatroom_id: props.user.chatid,
+      createdAt: new Date().toISOString(),
     };
     props.pushMessage(newmessage);
     setInput("");
     socket.emit("private message", newmessage);
     console.log("emitted");
+    console.log("newmessageeee", newmessage);
   };
 
   useEffect(() => {
@@ -47,19 +53,26 @@ export default function MessagePanel(props) {
   return (
     <>
       <div className="chatBoxBanner">
-        <div onClick={props.viewProfile} className="chatBoxFriend">
-          <div className="chatBoxBannerImgContainer">
-            <img
-              className="chatBoxBannerImg"
-              src={props.user.profilepic}
-              alt="pfp"
-            />
-            <StatusIcon isOnline={props.user.connected} />
+        <Tooltip title="View profile" placement="bottom">
+          <div onClick={props.viewProfile} className="chatBoxFriend">
+            <div className="chatBoxBannerImgContainer">
+              <img
+                className="chatBoxBannerImg"
+                src={props.user.profilepic}
+                alt="pfp"
+              />
+              <StatusIcon isOnline={props.user.connected} />
+            </div>
+            <span className="chatOnlineName">{props.user.firstname}</span>
           </div>
-          <span className="chatOnlineName">{props.user.firstname}</span>
-        </div>
+        </Tooltip>
+
         <div>
-          <Link to={`/meetupform/${props.user.chatid}`}>Add meetup</Link>
+          <Tooltip title="Add meetup" placement="bottom">
+            <Link to={`/meetupform/${props.user.chatid}`}>
+              <EventIcon sx={{ color: pink[500] }} fontSize="large" />
+            </Link>
+          </Tooltip>
         </div>
       </div>
       <div className="chatBoxTop">
@@ -87,7 +100,9 @@ export default function MessagePanel(props) {
                     />
                     <p className="messageText">{message.content}</p>
                   </div>
-                  {/* <div className="messageBottom">1 hour ago</div> */}
+                  <div className="messageBottom">
+                    {dateTimeFormatter(message.createdAt)}
+                  </div>
                 </div>
               </div>
             );
