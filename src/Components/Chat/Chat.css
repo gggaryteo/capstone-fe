@@ -24,6 +24,14 @@
 .chatBoxWrapper,
 .chatOnlineWrapper {
   padding: 10px;
-  
   height: 100%;
+}
+
+.noContentText {
+  position: absolute;
+  text-align: center;
+  top: 10%;
+  font-size: 50px;
+  color: pink;
+  cursor: default;
 }

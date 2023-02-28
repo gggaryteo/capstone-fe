@@ -51,15 +51,19 @@ export default function Chat() {
     socket.on("user disconnected", (id) => {
       setConnected(id, false);
     });
-    socket.on("private message", ({ content, from_id, to_id, chatroom_id }) => {
-      const newmessage = {
-        to_id,
-        from_id,
-        content,
-        chatroom_id,
-      };
-      pushMessage(newmessage);
-    });
+    socket.on(
+      "private message",
+      ({ content, from_id, to_id, chatroom_id, createdAt }) => {
+        const newmessage = {
+          to_id,
+          from_id,
+          content,
+          chatroom_id,
+          createdAt,
+        };
+        pushMessage(newmessage);
+      }
+    );
     return () => {
       socket.off("users");
       socket.off("user connected");
@@ -109,18 +113,27 @@ export default function Chat() {
       {isLoaded && (
         <div className="messenger">
           <div className="chatBox">
-            {/* Logged in as: {socket.auth.username} of userid {socket.auth.userID} */}
-            {/* {JSON.stringify(users)} */}
+            {/* {console.log( selectedUser)}  */}
             <div className="chatBoxWrapper">
-              {selectedUser ? (
-                <MessagePanel
-                  user={selectedUser}
-                  currentuserid={socket.auth.userID}
-                  pushMessage={pushMessage}
-                  viewProfile={()=>{navigate(`/profile/${selectedUser.username}`)}}
-                />
+              {users.length > 0 ? (
+                selectedUser ? (
+                  <MessagePanel
+                    user={selectedUser}
+                    currentuserid={socket.auth.userID}
+                    pushMessage={pushMessage}
+                    viewProfile={() => {
+                      navigate(`/profile/${selectedUser.username}`);
+                    }}
+                  />
+                ) : (
+                  <span className="noContentText">
+                    Open a conversation to start chatting 💭
+                  </span>
+                )
               ) : (
-                <h1>Click on a conversation to begin </h1>
+                <span className="noContentText">
+                  No chats yet - swipe to make friends!
+                </span>
               )}
             </div>
           </div>
