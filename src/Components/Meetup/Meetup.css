@@ -21,7 +21,7 @@
 .project-filter button {
   background: transparent;
   border: 0;
-  font-family: 'Readex', sans-serif;
+  font-family: "Readex", sans-serif;
   font-weight: 700;
   color: rgb(143, 143, 143);
   cursor: pointer;
@@ -34,13 +34,12 @@
 }
 .project-filter button.active {
   color: rgba(255, 116, 255, 0.92);
-} 
-
-.slider-frame {
-    width: auto;
-    display: block;
 }
 
+.slider-frame {
+  width: auto;
+  display: block;
+}
 
 @media only screen and (max-width: 600px) {
   .filter-nav {
