@@ -60,19 +60,13 @@ export default function Meetup() {
     return meetup.accepted;
   };
 
-  const expiredorcancelled = (meetup) => {
+  const cancelled = (meetup) => {
     return meetup.rejected;
   };
 
-  const filters = [all, upcoming, received, sent, expiredorcancelled];
+  const filters = [all, upcoming, received, sent, cancelled];
 
-  const INITIAL_ARRAY = [
-    "All",
-    "Upcoming",
-    "Received",
-    "Sent",
-    "Expired/Cancelled",
-  ];
+  const INITIAL_ARRAY = ["All", "Upcoming", "Received", "Sent", "Cancelled"];
 
   const handleClick = (filter) => {
     setCurrentFilter(filter);
@@ -101,21 +95,25 @@ export default function Meetup() {
         </nav>
       </div>
       {windowSize.width < 1232 ? (
-        <Carousel>
-          {meetupList
-            .filter(filters[INITIAL_ARRAY.indexOf(currentFilter)])
-            .map((meetup) => (
-              <MeetupCard
-                key={meetup.id}
-                event={meetup}
-                loggeduser={loggedUser}
-                accept={acceptMeetup}
-                reject={deleteOrCancelMeetup}
-                cancel={deleteOrCancelMeetup}
-              />
-            ))}
-        </Carousel>
-      ) : (
+        meetupList.length > 0 ? (
+          <Carousel>
+            {meetupList
+              .filter(filters[INITIAL_ARRAY.indexOf(currentFilter)])
+              .map((meetup) => (
+                <MeetupCard
+                  key={meetup.id}
+                  event={meetup}
+                  loggeduser={loggedUser}
+                  accept={acceptMeetup}
+                  reject={deleteOrCancelMeetup}
+                  cancel={deleteOrCancelMeetup}
+                />
+              ))}
+          </Carousel>
+        ) : (
+          <p>No meetups created 😊</p>
+        )
+      ) : meetupList.length > 0 ? (
         <Grid
           container
           spacing={5}
@@ -137,6 +135,8 @@ export default function Meetup() {
               </Grid>
             ))}
         </Grid>
+      ) : (
+        <p>No meetups created😊</p>
       )}
     </div>
   );
