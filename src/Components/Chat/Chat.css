@@ -6,6 +6,13 @@
   margin-top: -50px;
 }
 
+.messenger-mobile {
+  min-height: 700px;
+  max-height: 700px;
+  overflow-y: hidden;
+  margin-top: -50px;
+}
+
 .chatBox {
   flex: 9;
 }
@@ -25,6 +32,11 @@
 .chatOnlineWrapper {
   padding: 10px;
   height: 100%;
+}
+
+.wrapper-mobile {
+  min-height: 700px;
+  max-height: 700px;
 }
 
 .noContentText {

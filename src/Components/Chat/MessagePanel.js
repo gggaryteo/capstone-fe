@@ -18,18 +18,22 @@ export default function MessagePanel(props) {
 
   const onSend = (e) => {
     e.preventDefault();
-    const newmessage = {
-      to_id: props.user.userID,
-      from_id: props.currentuserid,
-      content: input,
-      chatroom_id: props.user.chatid,
-      createdAt: new Date().toISOString(),
-    };
-    props.pushMessage(newmessage);
-    setInput("");
-    socket.emit("private message", newmessage);
-    console.log("emitted");
-    console.log("newmessageeee", newmessage);
+    if (input) {
+      const newmessage = {
+        to_id: props.user.userID,
+        from_id: props.currentuserid,
+        content: input,
+        chatroom_id: props.user.chatid,
+        createdAt: new Date().toISOString(),
+      };
+      props.pushMessage(newmessage);
+      setInput("");
+      socket.emit("private message", newmessage);
+      console.log("emitted");
+      console.log("newmessageeee", newmessage);
+    } else {
+      return;
+    }
   };
 
   useEffect(() => {
@@ -111,11 +115,17 @@ export default function MessagePanel(props) {
       <div className="chatBoxBottom">
         <textarea
           className="chatMessageInput"
+          required
           placeholder="Your message..."
           value={input}
           onChange={({ target }) => setInput(target.value)}
         />
-        <button className="chatSubmitButton" onClick={onSend}>
+        <button
+          className={
+            input ? "chatSubmitButton" : "chatSubmitButton btn-disabled"
+          }
+          onClick={onSend}
+        >
           Send
         </button>
       </div>

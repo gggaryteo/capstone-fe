@@ -1,10 +1,13 @@
 import React, { useState, useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
 import socket from "../../socket";
 import "./Chat.css";
 import MessagePanel from "./MessagePanel";
 import UserPanel from "./UserPanel";
+import useWindowSize from "../../hooks/useWindowSize";
+import KeyboardBackspaceIcon from "@mui/icons-material/KeyboardBackspace";
+import { Tooltip } from "@mui/material";
 
 export default function Chat() {
   const [isLoaded, setIsLoaded] = useState(false);
@@ -12,6 +15,7 @@ export default function Chat() {
   const [users, setUsers] = useState([]);
 
   const navigate = useNavigate();
+  const windowSize = useWindowSize();
 
   const { loggedUser } = useAuth();
 
@@ -78,6 +82,11 @@ export default function Chat() {
     setSelectedUser(user);
   };
 
+  const returnToChat = (e) => {
+    e.preventDefault();
+    setSelectedUser(null);
+  };
+
   const pushMessage = (newMessage) => {
     setUsers((currentuser) => {
       let copyuser = [...currentuser];
@@ -108,15 +117,22 @@ export default function Chat() {
       return copyuser;
     });
   };
+
+  //
   return (
     <div>
-      {isLoaded && (
-        <div className="messenger">
-          <div className="chatBox">
+      {isLoaded &&
+        (windowSize.width < 769 ? (
+          <div className="messenger-mobile">
             {/* {console.log( selectedUser)}  */}
-            <div className="chatBoxWrapper">
-              {users.length > 0 ? (
-                selectedUser ? (
+            <div className="chatBoxWrapper wrapper-mobile">
+              {selectedUser ? (
+                <>
+                  <span style={{ cursor: "pointer" }}>
+                    <Tooltip title="Return to chat" placement="bottom">
+                      <KeyboardBackspaceIcon onClick={returnToChat} />
+                    </Tooltip>
+                  </span>
                   <MessagePanel
                     user={selectedUser}
                     currentuserid={socket.auth.userID}
@@ -125,31 +141,66 @@ export default function Chat() {
                       navigate(`/profile/${selectedUser.username}`);
                     }}
                   />
-                ) : (
-                  <span className="noContentText">
-                    Open a conversation to start chatting 💭
-                  </span>
-                )
+                </>
               ) : (
-                <span className="noContentText">
-                  No chats yet - swipe to make friends!
-                </span>
+                <div className="chatOnlineWrapper wrapper-mobile">
+                  {users.length > 0 ? (
+                    users.map((user) => (
+                      <UserPanel
+                        user={user}
+                        selecteduserid={selectedUser}
+                        onSelect={() => onSelectUser(user)} // i just put onSelectUser without the callback aand it did not work, so this works now.
+                      />
+                    ))
+                  ) : (
+                    <span className="noContentText">
+                      No chats yet - swipe to make friends first!
+                    </span>
+                  )}
+                </div>
               )}
             </div>
           </div>
-          <div className="chatOnline">
-            <div className="chatOnlineWrapper">
-              {users.map((user) => (
-                <UserPanel
-                  user={user}
-                  selecteduserid={selectedUser}
-                  onSelect={() => onSelectUser(user)} // i just put onSelectUser without the callback aand it did not work, so this works now.
-                />
-              ))}
+        ) : (
+          <div className="messenger">
+            <div className="chatBox">
+              {/* {console.log( selectedUser)}  */}
+              <div className="chatBoxWrapper">
+                {users.length > 0 ? (
+                  selectedUser ? (
+                    <MessagePanel
+                      user={selectedUser}
+                      currentuserid={socket.auth.userID}
+                      pushMessage={pushMessage}
+                      viewProfile={() => {
+                        navigate(`/profile/${selectedUser.username}`);
+                      }}
+                    />
+                  ) : (
+                    <span className="noContentText">
+                      Open a conversation to start chatting 💭
+                    </span>
+                  )
+                ) : (
+                  <span className="noContentText">
+                    No chats yet - swipe to make friends!
+                  </span>
+                )}
+              </div>
+            </div>
+            <div className="chatOnline">
+              <div className="chatOnlineWrapper">
+                {users.map((user) => (
+                  <UserPanel
+                    user={user}
+                    selecteduserid={selectedUser}
+                    onSelect={() => onSelectUser(user)} // i just put onSelectUser without the callback aand it did not work, so this works now.
+                  />
+                ))}
+              </div>
             </div>
           </div>
-        </div>
-      )}
+        ))}
     </div>
   );
 }
