@@ -5,16 +5,18 @@ import DateTimePicker from "./DateTimePicker";
 import axios from "axios";
 import { useNavigate, useParams } from "react-router-dom";
 import {
+  Alert,
+  AlertTitle,
   Avatar,
   Box,
   Button,
   Container,
   Grid,
+  Snackbar,
   Stack,
   TextField,
   Typography,
 } from "@mui/material";
-import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 
 export default function MeetupForm() {
   const [title, setTitle] = useState("");
@@ -39,6 +41,15 @@ export default function MeetupForm() {
   const [descErrorMessage, setDescErrorMessage] = useState("");
 
   const [chatPartner, setChatPartner] = useState("");
+
+  const [successAlert, setSuccessAlert] = useState(false);
+
+  const handleCloseAlert = (event, reason) => {
+    if (reason === "clickaway") {
+      return;
+    }
+    setSuccessAlert(false);
+  };
 
   const { loggedUser } = useAuth();
 
@@ -119,12 +130,13 @@ export default function MeetupForm() {
       )
       .then((response) => {
         console.log("create meetup response", response.data);
+        setSuccessAlert(true);
         setTitle("");
         setDateTime(dayjs());
         setLocation("");
         //setTag("");
         setDescription("");
-        navigate("/meetups");
+        //navigate("/meetups");
       });
   };
 
@@ -142,77 +154,94 @@ export default function MeetupForm() {
   };
 
   return (
-    <Container component="main" maxWidth="xs">
-      <Box
-        sx={{
-          marginTop: 8,
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-        }}
-      >
-        <Stack direction="row" spacing={2} mb={2}>
-          <Avatar alt="userpfp1" src={loggedUser.profilepic} />
-          <Avatar alt="userpfp2" src={chatPartner.profilepic} />
-        </Stack>
-        <Typography component="h1" variant="h5">
-          Meetup with {chatPartner.firstname}
-        </Typography>
-        <Box sx={{ mt: 3 }}>
-          <Grid container spacing={2}>
-            <Grid item xs={12} sm={6}>
-              <TextField
-                required
-                fullWidth
-                label="Title"
-                autoFocus
-                value={title}
-                onChange={({ target }) => validateTitle(target.value)}
-                error={titleError}
-                helperText={titleError && titleErrorMessage}
-              />
+    <>
+      <Container component="main" maxWidth="xs">
+        <Box
+          sx={{
+            marginTop: 8,
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+          }}
+        >
+          <Stack direction="row" spacing={2} mb={2}>
+            <Avatar alt="userpfp1" src={loggedUser.profilepic} />
+            <Avatar alt="userpfp2" src={chatPartner.profilepic} />
+          </Stack>
+          <Typography component="h1" variant="h5">
+            Meetup with {chatPartner.firstname}
+          </Typography>
+          <Box sx={{ mt: 3 }}>
+            <Grid container spacing={2}>
+              <Grid item xs={12} sm={6}>
+                <TextField
+                  required
+                  fullWidth
+                  label="Title"
+                  autoFocus
+                  value={title}
+                  onChange={({ target }) => validateTitle(target.value)}
+                  error={titleError}
+                  helperText={titleError && titleErrorMessage}
+                />
+              </Grid>
+              <Grid item xs={12} sm={6}>
+                <DateTimePicker
+                  value={dateTime}
+                  onChange={(newValue) => {
+                    setDateTime(newValue);
+                  }}
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <TextField
+                  required
+                  fullWidth
+                  label="Location"
+                  value={location}
+                  onChange={({ target }) => validateLocation(target.value)}
+                  error={locationError}
+                  helperText={locationError && locationErrorMessage}
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <TextField
+                  fullWidth
+                  label="Description"
+                  value={description}
+                  onChange={({ target }) => validateDescription(target.value)}
+                  error={descError}
+                  helperText={descError && descErrorMessage}
+                />
+              </Grid>
             </Grid>
-            <Grid item xs={12} sm={6}>
-              <DateTimePicker
-                value={dateTime}
-                onChange={(newValue) => {
-                  setDateTime(newValue);
-                }}
-              />
-            </Grid>
-            <Grid item xs={12}>
-              <TextField
-                required
-                fullWidth
-                label="Location"
-                value={location}
-                onChange={({ target }) => validateLocation(target.value)}
-                error={locationError}
-                helperText={locationError && locationErrorMessage}
-              />
-            </Grid>
-            <Grid item xs={12}>
-              <TextField
-                fullWidth
-                label="Description"
-                value={description}
-                onChange={({ target }) => validateDescription(target.value)}
-                error={descError}
-                helperText={descError && descErrorMessage}
-              />
-            </Grid>
-          </Grid>
-          <Button
-            onClick={onSubmit}
-            fullWidth
-            variant="contained"
-            sx={{ mt: 3, mb: 2 }}
-          >
-            Submit
-          </Button>
+            <Button
+              onClick={onSubmit}
+              fullWidth
+              variant="contained"
+              sx={{ mt: 3, mb: 2 }}
+            >
+              Submit
+            </Button>
+          </Box>
         </Box>
-      </Box>
-    </Container>
+      </Container>
+      <Snackbar
+        open={successAlert}
+        autoHideDuration={2000}
+        onClose={handleCloseAlert}
+      >
+        <Alert
+          variant="filled"
+          onClose={handleCloseAlert}
+          severity="success"
+          sx={{ width: "100%" }}
+        >
+          <AlertTitle>Success</AlertTitle>
+          Meetup created!
+        </Alert>
+      </Snackbar>
+    </>
   );
 }
 
