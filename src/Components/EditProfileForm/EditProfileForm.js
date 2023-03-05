@@ -9,15 +9,17 @@ import "./EditProfileForm.css";
 
 const EditProfileForm = () => {
   const { headers, isAuth, loggedUser, setAuthState } = useAuth();
-  const [{ biography, email, profilepic, password, username, location }, setForm] =
-    useState({
-      biography: loggedUser.biography || "",
-      email: loggedUser.email,
-      profilepic: loggedUser.profilepic || "",
-      password: loggedUser.password || "",
-      username: loggedUser.username,
-      location: loggedUser.location,
-    });
+  const [
+    { biography, email, profilepic, password, username, location },
+    setForm,
+  ] = useState({
+    biography: loggedUser.biography || "",
+    email: loggedUser.email,
+    profilepic: loggedUser.profilepic || "",
+    password: loggedUser.password || "",
+    username: loggedUser.username,
+    location: loggedUser.location,
+  });
 
   const [inactive, setInactive] = useState(false);
   const navigate = useNavigate();
@@ -47,7 +49,15 @@ const EditProfileForm = () => {
       delete updatedUser.password;
     }
 
-    updateUser({ headers, biography, email, profilepic, password, username, location })
+    updateUser({
+      headers,
+      biography,
+      email,
+      profilepic,
+      password,
+      username,
+      location,
+    })
       .then(setAuthState)
       .catch(console.error);
     setInactive(true);
@@ -56,8 +66,10 @@ const EditProfileForm = () => {
   return (
     isAuth && (
       <form className="settings-form" onSubmit={formSubmit}>
-        <Link className="back-icon" to={`/profile/${username}`}>🔙</Link>
-        <label>
+        <Link className="back-icon" to={`/profile/${username}`}>
+          🔙
+        </Link>
+        {/* <label>
           <span>Profile URL:</span>
           <input
             name="profilepic"
@@ -65,7 +77,7 @@ const EditProfileForm = () => {
             value={profilepic}
             onChange={inputHandler}
           />
-        </label>
+        </label> */}
 
         <label>
           <span>Your Username:</span>
@@ -117,6 +129,6 @@ const EditProfileForm = () => {
       </form>
     )
   );
-}
+};
 
 export default EditProfileForm;
