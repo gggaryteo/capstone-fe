@@ -68,11 +68,20 @@ export default function Chat() {
         pushMessage(newmessage);
       }
     );
+
+    socket.on("New Friend", (friend) => {
+      setUsers((currentuser) => {
+        let copyuser = [...currentuser];
+        copyuser.push(friend);
+        return copyuser;
+      });
+    });
     return () => {
       socket.off("users");
       socket.off("user connected");
       socket.off("user disconnected");
       socket.off("private message");
+      socket.off("New Friend");
     };
   }, []);
 
