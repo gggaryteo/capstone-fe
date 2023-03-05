@@ -10,12 +10,21 @@ export default function UserPanel(props) {
     : "chatOnlineFriend";
 
   return (
-    <div onClick={props.onSelect} className={classname}>
-      <div className="chatOnlineImgContainer">
-        <img className="chatOnlineImg" src={props.user.profilepic} alt="ppg" />
-        <StatusIcon isOnline={props.user.connected} />
+    <>
+      <div onClick={props.onSelect} className={classname}>
+        <div className="chatOnlineImgContainer">
+          <img
+            className="chatOnlineImg"
+            src={props.user.profilepic}
+            alt="ppg"
+          />
+          <StatusIcon isOnline={props.user.connected} />
+        </div>
+        <span className="chatOnlineName">{props.user.firstname}</span>
+        {props.user.messages.length > 0 &&
+          props.user.messages[props.user.messages.length - 1]["from_id"] ===
+            props.user.userID && <span>Your Turn</span>}
       </div>
-      <span className="chatOnlineName">{props.user.firstname}</span>
-    </div>
+    </>
   );
 }
