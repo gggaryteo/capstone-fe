@@ -79,3 +79,9 @@
   padding: 3vw !important;
   color: #76e2b3 !important;
 }
+
+@media only screen and (max-width: 768px) {
+  .mt-cards {
+    margin-top: 250px;
+  }
+}

@@ -55,7 +55,7 @@ const IndividualProfile = () => {
   };
 
   return (
-    <div className="card" data-state="#about">
+    <div className="profilecard" data-state="#about">
       <div className="card-header">
         <div className="card-cover"></div>
         {loggedUser.username === username ? (
