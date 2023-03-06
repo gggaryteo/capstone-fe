@@ -134,40 +134,42 @@ export default function Chat() {
         (windowSize.width < 769 ? (
           <div className="messenger-mobile">
             {/* {console.log( selectedUser)}  */}
-            <div className="chatBoxWrapper wrapper-mobile">
-              {selectedUser ? (
-                <>
-                  <span style={{ cursor: "pointer" }}>
-                    <Tooltip title="Return to chat" placement="bottom">
-                      <KeyboardBackspaceIcon onClick={returnToChat} />
-                    </Tooltip>
-                  </span>
-                  <MessagePanel
-                    user={selectedUser}
-                    currentuserid={socket.auth.userID}
-                    pushMessage={pushMessage}
-                    viewProfile={() => {
-                      navigate(`/profile/${selectedUser.username}`);
-                    }}
-                  />
-                </>
-              ) : (
-                <div className="chatOnlineWrapper wrapper-mobile">
-                  {users.length > 0 ? (
-                    users.map((user) => (
-                      <UserPanel
-                        user={user}
-                        selecteduserid={selectedUser}
-                        onSelect={() => onSelectUser(user)} // i just put onSelectUser without the callback aand it did not work, so this works now.
-                      />
-                    ))
-                  ) : (
-                    <span className="noContentText">
-                      No chats yet - swipe to make friends first!
+            <div className="chatBox">
+              <div className="chatBoxWrapper wrapper-mobile">
+                {selectedUser ? (
+                  <>
+                    <span style={{ cursor: "pointer" }}>
+                      <Tooltip title="Return to chat" placement="bottom">
+                        <KeyboardBackspaceIcon onClick={returnToChat} />
+                      </Tooltip>
                     </span>
-                  )}
-                </div>
-              )}
+                    <MessagePanel
+                      user={selectedUser}
+                      currentuserid={socket.auth.userID}
+                      pushMessage={pushMessage}
+                      viewProfile={() => {
+                        navigate(`/profile/${selectedUser.username}`);
+                      }}
+                    />
+                  </>
+                ) : (
+                  <div className="chatOnlineWrapper wrapper-mobile">
+                    {users.length > 0 ? (
+                      users.map((user) => (
+                        <UserPanel
+                          user={user}
+                          selecteduserid={selectedUser}
+                          onSelect={() => onSelectUser(user)} // i just put onSelectUser without the callback aand it did not work, so this works now.
+                        />
+                      ))
+                    ) : (
+                      <span className="noContentText">
+                        No chats yet - swipe to make friends first!
+                      </span>
+                    )}
+                  </div>
+                )}
+              </div>
             </div>
           </div>
         ) : (

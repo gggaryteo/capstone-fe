@@ -9,6 +9,7 @@
 .messenger-mobile {
   min-height: 700px;
   max-height: 700px;
+  display: flex;
   overflow-y: hidden;
   margin-top: -50px;
 }
