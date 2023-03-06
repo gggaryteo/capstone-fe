@@ -30,10 +30,14 @@
 }
 
 .yourTurnFont {
-  border-radius: 10%;
+  width: 80px;
+  margin-right: 2px;
+  margin-left: 2px;
+  text-align: center;
   background-color: mediumorchid;
   font-size: 15px;
   color: white;
+  font-weight: bold;
 }
 
 .chatOnlineImg {

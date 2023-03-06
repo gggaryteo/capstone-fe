@@ -24,9 +24,13 @@ export default function UserPanel(props) {
           <span>{props.user.firstname}</span>
         </div>
 
-        {props.user.messages.length > 0 &&
+        {props.user.messages.length == 0 ? (
+          <div className="yourTurnFont">Your Turn</div>
+        ) : (
+          props.user.messages.length > 0 &&
           props.user.messages[props.user.messages.length - 1]["from_id"] ===
-            props.user.userID && <div className="yourTurnFont">Your Turn</div>}
+            props.user.userID && <div className="yourTurnFont">Your Turn</div>
+        )}
       </div>
     </>
   );
