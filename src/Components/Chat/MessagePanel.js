@@ -67,7 +67,7 @@ export default function MessagePanel(props) {
               />
               <StatusIcon isOnline={props.user.connected} />
             </div>
-            <span className="chatOnlineName">{props.user.firstname}</span>
+            <span>{props.user.firstname}</span>
           </div>
         </Tooltip>
 
