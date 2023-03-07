@@ -36,7 +36,7 @@ const AuthModal = ({ openModal, setOpenModal, isSignUp }) => {
       aria-labelledby="transition-modal-title"
       aria-describedby="transition-modal-description"
       open={openModal}
-      // onClose={handleClose}
+      onClose={handleClose}
       closeAfterTransition
       slotProps={{
         backdrop: {
