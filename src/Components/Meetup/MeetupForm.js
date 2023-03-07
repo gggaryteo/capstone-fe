@@ -136,6 +136,8 @@ export default function MeetupForm() {
         setLocation("");
         //setTag("");
         setDescription("");
+        setLocationError(true);
+        setTitleError(true);
         //navigate("/meetups");
       });
   };
