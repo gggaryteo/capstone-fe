@@ -164,7 +164,7 @@ export default function Chat() {
                       ))
                     ) : (
                       <span className="noContentText">
-                        No chats yet - swipe to make friends first!
+                        No chats yet - swipe to make friends first! 😁
                       </span>
                     )}
                   </div>
@@ -194,7 +194,7 @@ export default function Chat() {
                   )
                 ) : (
                   <span className="noContentText">
-                    No chats yet - swipe to make friends!
+                    No chats yet - swipe to make friends! 😁
                   </span>
                 )}
               </div>

@@ -30,7 +30,7 @@
 }
 
 .wrapper {
-  background: #e47afc;
+  background: rgb(209, 144, 214);
   display: flex;
   flex-direction: column;
   padding: 1.5em;
@@ -41,7 +41,7 @@
 }
 
 .expired {
-  background: darkgrey;
+  background: rgb(133, 133, 133);
 }
 
 .inactive .wrapper::before {

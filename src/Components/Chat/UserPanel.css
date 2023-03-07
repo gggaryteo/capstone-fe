@@ -21,7 +21,7 @@
 }
 
 .chatOnlineFriend:hover {
-  background-color: lightpink;
+  background-color: #D2FBA6ff;
 }
 
 .chatOnlineImgContainer {
@@ -34,7 +34,7 @@
   margin-right: 2px;
   margin-left: 2px;
   text-align: center;
-  background-color: mediumorchid;
+  background-color: #822691ff;
   font-size: 15px;
   color: white;
   font-weight: bold;
