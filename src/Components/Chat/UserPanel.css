@@ -1,0 +1,59 @@
+.selected {
+  background-color: hotpink;
+  color: white;
+}
+
+.chatOnlineFriend {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.friendWrap {
+  display: flex;
+  align-items: center;
+  font-weight: 500;
+  padding: 10px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.chatOnlineFriend:hover {
+  background-color: #D2FBA6ff;
+}
+
+.chatOnlineImgContainer {
+  position: relative;
+  margin-right: 10px;
+}
+
+.yourTurnFont {
+  width: 80px;
+  margin-right: 2px;
+  margin-left: 2px;
+  text-align: center;
+  background-color: #822691ff;
+  font-size: 15px;
+  color: white;
+  font-weight: bold;
+}
+
+.chatOnlineImg {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 1px solid white;
+}
+
+/* .new-messages {
+  color: white;
+  background-color: red;
+  width: 20px;
+  border-radius: 5px;
+  text-align: center;
+  float: right;
+  margin-top: 10px;
+} */

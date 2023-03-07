@@ -5,18 +5,29 @@ import "./Home.css";
 import { useState } from "react";
 import AuthModal from "../AuthModal/AuthModal";
 import Navbar from "../../Components/Navbar/Navbar";
+import { useAuth } from "../../context/AuthContext";
+import userLogout from "../../services/userLogout";
+import { useNavigate } from "react-router-dom";
 
 const Home = () => {
   const [isSignUp, setIsSignUp] = useState(true);
   const [openModal, setOpenModal] = useState(false);
-
-  const authToken = false;
+  const { setAuthState, isAuth, loggedUser } = useAuth();
+  const navigate = useNavigate();
 
   const handleClick = () => {
     console.log("User clicked");
     setOpenModal(true);
     setIsSignUp(true);
   };
+
+  const handleSignOut = () => {
+    setAuthState(userLogout(loggedUser.email))
+  }
+
+  const handleDashboard = () => {
+    navigate("/main")
+  }
 
   return (
     <>
@@ -28,9 +39,12 @@ const Home = () => {
       />
       <div className="home-page">
         <h1 className="primary-title">Frienemies®</h1>
-        <button className="homepage-button" onClick={handleClick}>
-          {authToken ? "Signout" : "Create Account"}
-        </button>
+        {!isAuth ? <button className="homepage-button" onClick={handleClick}> Create Account </button> :
+        <>
+        <button className="homepage-button" onClick={handleSignOut}> Sign Out</button>
+        <button className="homepage-button" onClick={handleDashboard}> Dashboard</button>
+        </>
+        }
 
         {openModal && (
           <AuthModal

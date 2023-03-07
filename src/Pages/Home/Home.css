@@ -5,10 +5,40 @@
   margin-top: 30vh;
 }
 
+/* .primary-title {
+  font-size: 90px;
+  color: #822691ff;
+} */
+
 .primary-title {
   font-size: 90px;
-  color: rgba(255,255,255);
+  font-family: sans-serif;
+  background: linear-gradient(
+      to right,
+      #822691ff 0%,
+      #6ff0f5ff 20%,
+      #f6b9faff 61%
+    ),
+    linear-gradient(#f6b9faff 52%, rgb(224, 246, 255) 60%, #d2fba6ff 61%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: wave 2000ms ease alternate infinite;
+  transition: all 0.4s ease;
 }
+@keyframes wave {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 50vw 10px;
+  }
+}
+
+/* --electric-blue: #6FF0F5ff;
+--mindaro: #D2FBA6ff;
+--mauve: #F6B9FAff;
+--mauveine: #822691ff; */
 
 .homepage-button {
   color: #fff;
@@ -20,6 +50,7 @@
   border: none;
   margin-top: 25px;
   cursor: pointer;
+  margin-right: 10px;
 }
 
 .homepage-button:hover {

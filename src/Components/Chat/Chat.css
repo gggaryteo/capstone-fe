@@ -1,0 +1,50 @@
+.messenger {
+  min-height: 800px;
+  max-height: 800px;
+  display: flex;
+  overflow-y: hidden;
+  margin-top: -50px;
+}
+
+.messenger-mobile {
+  min-height: 700px;
+  max-height: 700px;
+  display: flex;
+  overflow-y: hidden;
+  margin-top: -50px;
+}
+
+.chatBox {
+  flex: 9;
+}
+
+.chatOnline {
+  flex: 3;
+}
+
+.chatBoxWrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+}
+
+.chatBoxWrapper,
+.chatOnlineWrapper {
+  padding: 10px;
+  height: 100%;
+}
+
+.wrapper-mobile {
+  min-height: 700px;
+  max-height: 700px;
+}
+
+.noContentText {
+  position: absolute;
+  text-align: center;
+  top: 10%;
+  font-size: 50px;
+  color: #F6B9FAff;
+  cursor: default;
+}

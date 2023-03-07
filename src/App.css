@@ -8,3 +8,12 @@
     rgba(0, 0, 0, 0) 100%
   ), url('assets/crowd.jpg');
 }
+
+/* .overlay {
+  height: 100vh;
+  width: 100vw;
+  background-image: linear-gradient(#F6B9FAff 33.33%, #D2FBA6ff 33.33%, #D2FBA6ff 66.66%, #6FF0F5ff 66.66%);
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  margin: 0px;
+} */

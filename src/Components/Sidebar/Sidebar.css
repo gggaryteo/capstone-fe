@@ -1,0 +1,67 @@
+.sidebar {
+  width: 300px;
+  min-width: 300px;
+  background: #822691ff;
+  min-height: 100vh;
+  box-sizing: border-box;
+  position: relative;
+  color: #fff;
+}
+
+/* Position is fixed with regards to the sidebar styles */
+.sidebar-content {
+  position: fixed;
+  width: inherit;
+}
+
+.sidebar .user {
+  font-weight: bold;
+  text-align: center;
+  letter-spacing: 1px;
+  padding: 40px 30px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.sidebar .user .avatar {
+  width: 50px;
+  height: 50px;
+  margin-bottom: 10px;
+}
+
+.sidebar .links {
+  margin-top: 80px;
+  margin-left: 20px;
+}
+
+.sidebar .links ul {
+  width: 280px;
+  height: 102px;
+}
+
+.sidebar .links li {
+  margin-top: 10px;
+}
+
+/* Dashboard Span tags and img tags sit beside one another  */
+.sidebar .links a {
+  display: flex;
+  padding: 10px;
+  text-decoration: none;
+  width: 100%;
+  color: #ffffff;
+  box-sizing: border-box;
+}
+.sidebar .links .icons {
+  margin-right: 10px;
+  filter: invert(100%);
+}
+
+/* To style the NavLinks from react-router. */
+.sidebar .links a.active {
+  color: #555;
+  background: #f4f4f4;
+  border-radius: 20px 0 0 20px;
+}
+.sidebar .links .active .icons {
+  filter: invert(40%);
+}

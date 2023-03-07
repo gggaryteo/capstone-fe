@@ -1,0 +1,10 @@
+.Profile {
+  background-color: var(--bg-color);
+  height: 100vh;
+  display: flex;
+}
+
+.Profile .container {
+  flex-grow: 1;
+  padding: 0 30px;
+}

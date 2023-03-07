@@ -1,5 +1,5 @@
-import Register from '../Register/Register';
-import './AuthModal.css'
+import Register from "../Register/Register";
+import "./AuthModal.css";
 
 /*=============================================*/
 
@@ -8,7 +8,7 @@ import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
 import Fade from "@mui/material/Fade";
 import Typography from "@mui/material/Typography";
-import Login from '../Login/Login';
+import Login from "../Login/Login";
 
 const style = {
   position: "absolute",
@@ -28,8 +28,7 @@ const style = {
 
 /*=============================================*/
 
-const AuthModal = ( { openModal, setOpenModal, isSignUp }) => {
-
+const AuthModal = ({ openModal, setOpenModal, isSignUp }) => {
   const handleClose = () => setOpenModal(false);
 
   return (
@@ -58,7 +57,7 @@ const AuthModal = ( { openModal, setOpenModal, isSignUp }) => {
             sx={{ mt: 2 }}
             component="div"
           >
-            {isSignUp ? <Register /> : <Login/>}
+            {isSignUp ? <Register /> : <Login />}
           </Typography>
         </Box>
       </Fade>

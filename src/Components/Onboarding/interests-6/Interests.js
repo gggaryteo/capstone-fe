@@ -1,17 +1,20 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./Interests.css";
 import { ArrowBackIos } from "@mui/icons-material";
+import getInterest from "../../../services/getInterest";
 
-const interestsList = [
-  "Chess",
-  "Tennis",
-  "Bowling",
-  "Badminton",
-  "Leetcode",
-];
 
 function Interests({ setCurrent, interests, setInterests }) {
+  const [interestsList, setInterestsList] = useState([]);
   const [skillsList, setSkillsList] = useState(interests);
+
+  useEffect(() => {
+    getInterest()
+      .then(setInterestsList)
+      .catch((error) => {
+        console.error(error);
+      });
+  }, []);
 
   const handleFormChange = (event, index) => {
     let data = [...skillsList];

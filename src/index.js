@@ -1,35 +1,58 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import './index.css';
-import App from './App';
+import React, { useMemo } from "react";
+import ReactDOM from "react-dom/client";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import "./index.css";
+import App from "./App";
 
 // Import Pages
-import Dashboard from './Pages/Dashboard/Dashboard';
-import Home from './Pages/Home/Home';
-import Register from './Pages/Register/Register';
-import Login from './Pages/Login/Login';
-import ErrorNotFound from './Pages/ErrorNotFound/ErrorNotFound';
+import Home from "./Pages/Home/Home";
+import ErrorNotFound from "./Pages/ErrorNotFound/ErrorNotFound";
+import AuthProvider, { useAuth } from "./context/AuthContext";
+import Main from "./Pages/Main/Main";
+import Chats from "./Pages/Chats/Chats";
+import Meetups from "./Pages/Meetups/Meetups";
+import Profile from "./Pages/Profile/Profile";
+import EditProfile from "./Pages/Profile/EditProfile";
+import AddMeetup from "./Pages/Meetups/AddMeetup.js";
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(
-  <React.StrictMode>
-    <BrowserRouter>
+const RootWrapper = () => {
+  const { isAuth } = useAuth();
+  console.log(isAuth);
 
+  const routes = useMemo(
+    () => (
       <Routes>
         <Route element={<App />}>
-          {/* Note: render child route at the parent route level so all posts will be shown*/}
-          <Route path="/" element={<Home />}></Route>
-          <Route path="login" element={<Login />} />
-          <Route path="register" element={<Register />} />
+          <Route path="/" element={<Home />} />
+          {isAuth ? (
+            <>
+              <Route path="/main" element={<Main />} />
+              <Route path="/chats" element={<Chats />} />
+              <Route path="/meetups" element={<Meetups />} />
+              <Route path="/profile/:username" element={<Profile />} />
+              <Route path="/editprofile" element={<EditProfile />} />
+              <Route path="/meetupform/:chatId" element={<AddMeetup />} />
+            </>
+          ) : (
+            <Route path="/" element={<ErrorNotFound />} />
+          )}
         </Route>
         <Route path="*" element={<ErrorNotFound />} />
       </Routes>
-      
-    </BrowserRouter>
-  </React.StrictMode>
+    ),
+    [isAuth]
+  );
+
+  return routes;
+};
+
+const Root = () => (
+  <BrowserRouter>
+    <AuthProvider>
+      <RootWrapper />
+    </AuthProvider>
+  </BrowserRouter>
 );
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
+const root = ReactDOM.createRoot(document.getElementById("root"));
+root.render(<Root />);
