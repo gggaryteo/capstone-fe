@@ -49,6 +49,7 @@ h5:last-of-type {
   position: relative;
   z-index: 1;
   overflow-x: hidden;
+  overflow-y: hidden;
   background-color: white;
   display: flex;
   transition: 0.3s;
@@ -62,7 +63,7 @@ h5:last-of-type {
 }
 
 .card {
-  height: 500px !important;
+  height: 550px !important;
 }
 
 .slider-control-bottomcenter {
