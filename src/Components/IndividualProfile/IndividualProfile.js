@@ -7,7 +7,7 @@ import {
   useParams,
 } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
-import getProfile from "../../services/getProfile"; 
+import getProfile from "../../services/getProfile";
 import {
   FaCog,
   FaInstagram,
@@ -16,14 +16,17 @@ import {
   FaGithub,
 } from "react-icons/fa";
 import "./IndividualProfile.css";
-import EditProfileIcon from '../../assets/editprofile.svg'
+import EditProfileIcon from "../../assets/editprofile.svg";
 import getUserInterests from "../../services/getUserAndInterests";
 
 const IndividualProfile = () => {
   const { state } = useLocation();
   const [activeTab, setActiveTab] = useState("#about");
-  const [{ biography, profilepic, location, firstname, email, online }, setAuthor] = useState(state || {});
-  const [userInterests, setUserInterests] = useState([])
+  const [
+    { biography, profilepic, location, firstname, email, online },
+    setAuthor,
+  ] = useState(state || {});
+  const [userInterests, setUserInterests] = useState([]);
   const { isAuth, headers, loggedUser } = useAuth();
   const { username } = useParams();
   const navigate = useNavigate();
@@ -40,13 +43,11 @@ const IndividualProfile = () => {
   }, [username, headers, state, navigate, online]);
 
   useEffect(() => {
-
-    getUserInterests({username})
-    .then(setUserInterests)
-    .catch((error) => {
-      console.error(error)
-    })
-
+    getUserInterests({ username })
+      .then(setUserInterests)
+      .catch((error) => {
+        console.error(error);
+      });
   }, [username]);
 
   const handleTabClick = (event) => {
@@ -154,7 +155,7 @@ const IndividualProfile = () => {
                 {email}
               </div>
 
-              <button className="contact-me">Send A Request</button>
+              {/* <button className="contact-me">Send A Request</button> */}
             </div>
           </div>
         </div>
