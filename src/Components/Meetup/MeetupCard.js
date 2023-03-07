@@ -9,7 +9,7 @@ import LocationOnIcon from "@mui/icons-material/LocationOn";
 import EventIcon from "@mui/icons-material/Event";
 import PersonIcon from "@mui/icons-material/Person";
 import PersonAddIcon from "@mui/icons-material/PersonAdd";
-import RejectedLogo from "../../assets/rejected.png"
+import RejectedLogo from "../../assets/rejected.png";
 
 export default function MeetupCard(props) {
   const acceptbutton = (
@@ -23,6 +23,8 @@ export default function MeetupCard(props) {
   const cancelbutton = (
     <CoolButton onClick={() => props.cancel(props.event.id)}>Cancel</CoolButton>
   );
+
+  const date = new Date();
 
   return (
     <Card
@@ -40,7 +42,13 @@ export default function MeetupCard(props) {
         width: "100%",
       }}
     >
-      <CardContent className="wrapper">
+      <CardContent
+        className={
+          date - new Date(props.event.datetime) <= 0
+            ? "wrapper"
+            : "wrapper expired"
+        }
+      >
         {props.event.rejected && (
           <div className="rejected-overlay">
             <img
@@ -50,7 +58,9 @@ export default function MeetupCard(props) {
             />
           </div>
         )}
-        <h2 className="upper">Your Next Meetup</h2>
+        <h2 className="upper">
+          {date - new Date(props.event.datetime) <= 0 ? "Upcoming" : "Past"}
+        </h2>
         <Typography variant="p" className="meetup">
           {props.event.title}
         </Typography>
@@ -96,7 +106,10 @@ export default function MeetupCard(props) {
           </div>
         </div>
 
-        <div className="button-container" style={{display: "flex", marginTop: "50px"}}>
+        <div
+          className="button-container"
+          style={{ display: "flex", marginTop: "50px" }}
+        >
           {!(props.event.accepted || props.event.rejected) &&
             (props.event.pending &&
             props.event.author_id === props.loggeduser.id ? (

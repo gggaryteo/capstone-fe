@@ -40,6 +40,10 @@
   position: relative;
 }
 
+.expired {
+  background: darkgrey;
+}
+
 .inactive .wrapper::before {
   opacity: 1;
 }
