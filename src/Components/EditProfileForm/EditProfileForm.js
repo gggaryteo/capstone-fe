@@ -79,7 +79,7 @@ const EditProfileForm = () => {
           />
         </label> */}
 
-        <label>
+        <label className="label-form">
           <span>Your Username:</span>
           <input
             name="username"
@@ -89,7 +89,7 @@ const EditProfileForm = () => {
           />
         </label>
 
-        <label>
+        <label className="label-form">
           <span>About yourself:</span>
           <textarea
             name="biography"
@@ -100,12 +100,12 @@ const EditProfileForm = () => {
           ></textarea>
         </label>
 
-        <label>
+        <label className="label-form">
           <span>Update Email:</span>
           <input name="email" required value={email} onChange={inputHandler} />
         </label>
 
-        <label>
+        <label className="label-form">
           <span>Update Password:</span>
           <input
             name="password"
@@ -115,7 +115,7 @@ const EditProfileForm = () => {
           />
         </label>
 
-        <label>
+        <label className="label-form">
           <span>Update Location:</span>
           <input
             name="location"
