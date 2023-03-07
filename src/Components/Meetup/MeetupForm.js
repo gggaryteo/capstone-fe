@@ -61,7 +61,7 @@ export default function MeetupForm() {
       `${process.env.REACT_APP_API_SERVER}/chats/room/${chatId}`
     );
     console.log("chatroom details in axios call: ", details.data);
-    if (details.data.user1.id == loggedUser.id) {
+    if (details.data.user1.id !== loggedUser.id) {
       setChatPartner(details.data.user2);
     } else {
       setChatPartner(details.data.user1);

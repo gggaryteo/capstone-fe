@@ -125,6 +125,8 @@ function InterestDeck() {
         cards={cards}
         usersByInterests={usersByInterests}
         bind={bind}
+        handleSwipeLeft={handleSwipeLeft}
+        handleSwipeRight={handleSwipeRight}
       />
     </div>
   ));

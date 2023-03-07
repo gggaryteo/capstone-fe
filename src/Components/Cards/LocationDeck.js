@@ -124,6 +124,8 @@ function LocationDeck() {
       cards={cards}
       usersByLocation={usersByLocation}
       bind={bind}
+      handleSwipeRight={handleSwipeRight}
+      handleSwipeLeft={handleSwipeLeft}
     />
   ));
 }
